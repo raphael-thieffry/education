@@ -1,0 +1,287 @@
+Résumé OCaml
+
+________________________________________________________
+
+TYPES
+
+Fonction = type_arg1 -> type_arg2 -> etc. -> type_retour
+Entier = int
+Flottant = float
+Booléen = bool
+Chaîne de caractères = string
+n-uplet = type1 * type2 etc. (produit cartésien)
+exceptions = exn
+
+TYPES STRUCTURÉS
+
+enregistrements (struct)
+types somme (enum)
+
+
+OPÉRATIONS
+
+Opérations entiers : int
+
++ : addition
+- : soustraction
+* : multiplication
+/ : division entière
+mod : modulo
+
+
+Opérations sur les flottants : float (1., 1.0)
+
++. : addition
+-. : soustraction
+*. : multiplication
+/. : division
+** : puissance
+float i : conversion int->float
+float_of_int i
+int_of_float
+sqrt t : racine carrée
+sin f : sinus
+cos f
+tan f
+log f : log naturel (ln ?)
+log10 f : base 10
+
+
+Sur les booléens : bool (true, false)
+
+&& : and
+|| : or
+not : not
+
+
+Comparaisons (nombres) :
+
+= : égal
+<> : différent (!= compare adresse)
+< : strictement inférieur
+> : strictement supérieur
+<= : inférieur ou égal
+>= : supérieur ou égal
+
+
+Opérations chaînes de caractères : string ("")
+
+^ concaténation
+String.length s : longueur
+
+
+Opérations tableaux : ??
+
+Array.length : longueur du tableau (commence à 0)
+Talbeau.(i) : élément d'indice i
+
+
+Opérations n-uplets :
+
+(ci-dessous, fct_n renvoie n-uplet)
+
+let multiple (pour 2+ uplet)
+	let s, h, t = val1, val2, val3
+	let s, h, t = fct_3
+
+ou encore accéder au premier/second élément avec fst (first) et snd (second)
+	let res = fct_2
+	s = fst res
+	h = snd res
+
+
+Fonctions :
+
+let fct arg1 arg2 arg3 = res
+let rec fct arg = res avec appel récursif
+let fct (arg1 : int) (arg2: float) (arg3 : bool) : type_retour = res
+
+fct arg1 arg2 arg3 : appel
+
+Boucles = appel récursif
+
+Fonctions mutuellement récursives g et f :
+	let rec f args = definition
+	and g argsbis = def
+-> pas de rec à g !
+
+Fonctions polymorphes :
+type : 'a -> 'b -> 'a * 'b par exemple
+alpha et bêta représentent des types génériques, non spécialisés
+
+Fonctions d'ordre supérieur :
+fonctions qui prennent en argument des fonctions
+ordre 1 -> fonctions classiques
+ordre 2 -> prennent des fonctions d'ordre 1
+etc.
+-> pour passer la fonction multiplication en arguments, on peut mettre le symbole opérateur (*)
+-> une fonction : f : fct -> arg -> res, si on fait : (f g), on obtient la fonction arg -> res
+
+
+Exceptions :
+
+exemples d'instances de type exn :
+Division_by_zero
+Stack_overflow (dépassement Pile)
+Break (Ctrl-C)
+Failure (?)
+
+Ajouter une erreur perso :
+exception NomErreur of string / of int / rien
+
+Créer message d'erreur :
+failwith "message"
+
+Rattraper une exception :
+try
+	expressioninitiale
+with
+	| Exception1 -> expr1
+	| Exception2 (s) -> expr2
+-> on fait l'expression initiale
+-> si pas d'erreur, on renvoie l'expression
+-> si une erreur, si elle est rattrapée, on fait l'expression qui correspond
+->		  si elle n'est pas rattrapée, elle se propage
+
+
+
+
+TYPES STRUCTURÉS
+
+Opérations enregistrements (struct) :
+
+définition :
+	type nomEnregistrement = {
+		nomAtt1 : typeAtt1 ;
+		nomAtt2 : typeAtt2
+	}
+-> définition du nom et du type des attributs
+-> le point virgule est optionnel à la fin de la dernière ligne
+
+création d'une instance :
+	let nomInstance = {
+		nomAtt1 = valeurAtt1 ;
+		nomAtt2 = valeurAtt2
+	}
+-> comme une affectation des attributs
+
+accès aux champs :
+	nomInstance.nomAtt
+
+=> ATTENTION : ne pas donner les mêmes noms de champs (si argument de fonction, comment on peut deviner le champ de quel enregistrement est demandé ?)
+
+
+Opérations type somme (enum) :
+
+définition :
+	type nomSomme = nomTypePerso1 | nomTypePerso2 | nomTypePerso3 | etc.
+-> l'un des types peut être une valeur de type nomTypePersoN mais de valeur un type (int par ex) :
+	type nomSomme = etc | nomTypeN of int | NomTypeNN of int*int
+-> nomTypePerso1, 2, etc. = CONSTANTES du type somme
+-> nomTypePersoN = VALEUR ETIQUETÉE
+
+création d'une instance :
+	let att_a = nomType1
+	let att_b = nomTypeN (3)
+	let att_c = nomTypeNN(3,5)
+-> On peut mettre n'importe quel élément du type choisi
+-> Attention, att_b n'est pas de type int mais de type nomSomme
+
+manipulation de types sommes :
+-> motif (pattern) :
+	nomTypeCst
+	nomValeurEtiquetee (3) : avec ou sans les parenthèses
+	nomValeurEtiquetee (n) : n est la variable qui contient la valeur pour l'expression qui suit et n est de type donné (int par ex)
+	_ : n'importe quelle valeur du type somme
+
+Syntaxe :
+	match attDeTypeNomSomme with
+	motif1 -> expr1
+	| motif2 -> expr2
+	| motif3 | motif4 -> exprFactorisee
+	| motifEtiquetteN (3) -> expression si l'entier stocké vaut 3
+	| motifEtiqueteN (n) -> expression si l'entier est autre, et sa valeur est stockée dans n pour la suite
+	| motifEtiqueteNN (m, _) -> expression où osef de 2e elem
+	| _ -> exprDefaut
+-> nom1 -> expr1 : appelé branche
+-> c'est un "sinon si" donc ne pas se tromper d'ordre (3 puis n et pas n puis 3)
+-> on peut factoriser les cas
+
+-> on peut faire un match d'un n-uplet
+	match att1, att2 with
+	nom1_CsteY, nom2_CsteX -> ceci
+	nom1_CsteA, nom2_CsteA | nom2_Cste2, nom2_CsteB -> cela
+	nom1_Cste, _ -> cela
+	_, nom2_Etiquettee val -> ceci avec val dedans
+	
+
+________________________________________________________
+
+Affichage :
+
+Printf.printf s : chaîne formatée
+	s est de la forme : "texte avec des %d %f ou %s"
+	d : entier
+	f : flottant
+	s : chaîne de caractères
+print_int
+print_string
+print_float
+
+unit = type, () = valeur -> void ou None
+
+
+________________________________________________________
+
+ARGUMENTS
+
+Arguments d'un programme :
+
+Sys.argv
+	1er élément (pos 0) : nom programme
+	autres éléments : arguments
+
+
+Lecture au clavier :
+
+read_int
+read_float
+read_line : ligne de texte
+
+________________________________________________________
+
+EXPRESSIONS
+
+Inférence de type : les types sont déduits automatiquement !
+- deviner le type des variables
+- en déduire le type des expressions
+- en déduire le type des fonctions
+
+-> variables de type affectées selon expresions -> syst. d'équations -> si contradiction : ERREUR de type
+-> merveilleux pour éviter les bugs
+
+let () = expression sans valeur de retour
+
+
+Variables :
+
+On ne peut jamais modifier une variable. Si pl fois mm nom -> pl variables qui se cachent.
+
+let var_glob = valeur
+let var_loc = valeur in expr
+
+nom variable : commence par _ ou minuscule (contient _ lettres et/ou chiffres) -> si majuscule, types sommes par exemple
+
+
+Tests :
+
+if test1 then val1 else val2
+	val1 et val2 doivent être du même type
+	l'expression vaut la branche qui est vérifiée
+
+on peu omettre else ssi branche then de type unit (normal)
+
+
+Begin end = bloc
+
+plusieurs opérations unit à la suite en séparant par ;

@@ -1,0 +1,14 @@
+Créer un dossier “POGL”,  copier l'archive dedans,  extraire les fichiers de l’archive dedans, vérifier que tous les fichiers se trouvent à présent dans le sous dossier “eTDTP’’ de “POGL”
+Lancer l'application Intellij,  cliquer “open project” et ouvrir le dossier eTDTP. Vous verrez tout vos TPs.
+Il vous faut construire le module avec un click droit sur Nreines.java dans le dossier squelette du dossier TP1, vous devez pouvoir faire buildModule eTDTP, ca compile tout; 
+
+ votre squelette TP1 dans le dossier NReines,  doit pouvoir s'exécuter, executer le (par exemple en faisant un click droit sur le Nreines.java, puis click sur la , fleche verte “Nreines.main()”.  Pour l’instant cela ouvre juste une fenêtre avec deux boutons, consulter l'énoncé du TP1 pour progressivement compléter le squelette.
+Vous pouvez si vous le souhaitez également exécuter le démineur qui est dans la liste avant le TP1 et que nous allons  commenter en cours.  mais le dossier apparaît en rouge! Il faut que vous le fassiez apparaître en bleu  (voir mode d'emploi de squelette sur l'énoncé des TDTP), Il faut faire un clic droit sur le dossier et sélectionner “markDirectory as” (qui se trouve presque tout en bas du long menu) puis  “cancel Exclusion”. Une 2eme fois,  clic droit sur le dossier sélectionnez encore  “markDirectory as” puis  “sourceRoot” (en bleu), enfin un clickDroit sur le dossier NReines pour lui, le mettre en “excluded” (en rouge).
+
+
+Petit bug, l'idea n'arrive pas à compiler le  TP 7 "formule1". Ce TP porte sur les tests.  Lorsque l'idea veut compiler les tests, il dit: "java: package org.junit does not exist"
+Une solution simple est d'exclure du Path, le dossier Test qui contients les trois tests, mais vous serez ennuyés au TP7.
+Pour le résoudre, ouvrez par exemple vect.test, et vous déplacer le curseur sur le "junit" qui apparait en rouge dans la ligne au tout début    "import org.junit.*;", l'idea vous suggére en bleu de cliquer sur add Junit 4 to class Path, vous cliquer la dessus, puis OK sur le bandeau suivant qui apparait, et ca résoud le problème.
+
+
+

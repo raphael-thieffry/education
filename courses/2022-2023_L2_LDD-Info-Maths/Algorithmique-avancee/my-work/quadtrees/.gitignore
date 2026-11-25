@@ -1,0 +1,14 @@
+<<<<<<< HEAD
+*.o
+main
+.vscode
+pile
+*.zizi
+=======
+*.o
+main
+.vscode
+pile
+*.zizi
+*.zip
+>>>>>>> 46b290777aa5316c545fde0729fb2f8035074995

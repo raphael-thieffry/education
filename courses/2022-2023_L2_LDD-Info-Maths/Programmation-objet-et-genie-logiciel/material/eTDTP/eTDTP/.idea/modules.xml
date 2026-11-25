@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/01TP-NReines/01TP-NReines.iml" filepath="$PROJECT_DIR$/01TP-NReines/01TP-NReines.iml" />
+      <module fileurl="file://$PROJECT_DIR$/02TP-Iterateurs/02TP-Iterateurs.iml" filepath="$PROJECT_DIR$/02TP-Iterateurs/02TP-Iterateurs.iml" />
+      <module fileurl="file://$PROJECT_DIR$/04TP-Circuits/04TP-Circuits.iml" filepath="$PROJECT_DIR$/04TP-Circuits/04TP-Circuits.iml" />
+      <module fileurl="file://$PROJECT_DIR$/05TP-Graphes-GenMyModel/05TP-Graphes-GenMyModel.iml" filepath="$PROJECT_DIR$/05TP-Graphes-GenMyModel/05TP-Graphes-GenMyModel.iml" />
+      <module fileurl="file://$PROJECT_DIR$/07TD-TablesDeHachage/07TD-TablesDeHachage.iml" filepath="$PROJECT_DIR$/07TD-TablesDeHachage/07TD-TablesDeHachage.iml" />
+      <module fileurl="file://$PROJECT_DIR$/08TP-FormuLInf/08TP-FormuLInf.iml" filepath="$PROJECT_DIR$/08TP-FormuLInf/08TP-FormuLInf.iml" />
+      <module fileurl="file://$PROJECT_DIR$/10TD-HeritageTrain/10TD-HeritageTrain.iml" filepath="$PROJECT_DIR$/10TD-HeritageTrain/10TD-HeritageTrain.iml" />
+      <module fileurl="file://$PROJECT_DIR$/11TP-Visiteurs/11TP-Visiteurs.iml" filepath="$PROJECT_DIR$/11TP-Visiteurs/11TP-Visiteurs.iml" />
+      <module fileurl="file://$PROJECT_DIR$/eTDTP.iml" filepath="$PROJECT_DIR$/eTDTP.iml" />
+      <module fileurl="file://$PROJECT_DIR$/oldTdTp/oldTdTp.iml" filepath="$PROJECT_DIR$/oldTdTp/oldTdTp.iml" />
+    </modules>
+  </component>
+</project>

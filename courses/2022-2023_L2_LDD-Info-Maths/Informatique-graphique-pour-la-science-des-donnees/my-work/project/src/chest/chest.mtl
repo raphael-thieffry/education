@@ -1,0 +1,114 @@
+# Blender 3.5.0 MTL File: 'sans_nom.blend'
+# www.blender.org
+
+newmtl Material__2
+Ks 0.882000 0.882000 0.882000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+Pr 0.735425
+Pm 0.000000
+Ps 0.000000
+Pc 0.000000
+Pcr 0.030000
+aniso 0.000000
+anisor 0.000000
+Tf 1.000000 1.000000 1.000000
+map_Kd aquarium_treasure_chest_diffuse.jpg
+
+newmtl aquarium_treasure_chest
+Ks 0.270000 0.270000 0.270000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+Pr 0.800000
+Pm 0.000000
+Ps 0.000000
+Pc 0.000000
+Pcr 0.030000
+aniso 0.000000
+anisor 0.000000
+Tf 1.000000 1.000000 1.000000
+map_Kd aquarium_treasure_chest_diffuse.jpg
+
+newmtl aquarium_treasure_chest_metal
+Ks 0.540000 0.540000 0.540000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+Pr 0.765479
+Pm 0.000000
+Ps 0.000000
+Pc 0.000000
+Pcr 0.030000
+aniso 0.000000
+anisor 0.000000
+Tf 1.000000 1.000000 1.000000
+map_Kd aquarium_treasure_chest_diffuse.jpg
+
+newmtl aquarium_treasure_chest_pearl
+Kd 0.909800 0.909800 0.909800
+Ks 0.585000 0.585000 0.585000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+Pr 0.765479
+Pm 0.000000
+Ps 0.000000
+Pc 0.000000
+Pcr 0.030000
+aniso 0.000000
+anisor 0.000000
+Tf 1.000000 1.000000 1.000000
+
+newmtl aquarium_treasure_chest_stone_green
+Kd 0.039200 0.423500 0.086300
+Ks 0.567000 0.567000 0.567000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+Pr 0.726139
+Pm 0.000000
+Ps 0.000000
+Pc 0.000000
+Pcr 0.030000
+aniso 0.000000
+anisor 0.000000
+Tf 1.000000 1.000000 1.000000
+
+newmtl aquarium_treasure_chest_stone_red
+Kd 0.552900 0.000000 0.000000
+Ks 0.450000 0.450000 0.450000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+Pr 0.726139
+Pm 0.000000
+Ps 0.000000
+Pc 0.000000
+Pcr 0.030000
+aniso 0.000000
+anisor 0.000000
+Tf 1.000000 1.000000 1.000000
+
+newmtl aquarium_treasure_chest_stone_yellow
+Kd 0.796100 0.576500 0.192200
+Ks 0.675000 0.675000 0.675000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+Pr 0.726139
+Pm 0.000000
+Ps 0.000000
+Pc 0.000000
+Pcr 0.030000
+aniso 0.000000
+anisor 0.000000
+Tf 1.000000 1.000000 1.000000

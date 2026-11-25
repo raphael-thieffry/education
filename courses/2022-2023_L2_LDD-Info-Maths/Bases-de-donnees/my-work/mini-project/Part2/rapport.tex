@@ -1,0 +1,177 @@
+\documentclass[a4paper, 12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[french]{babel}
+\usepackage{amsmath, amssymb, amsthm, mathtools, mathrsfs}
+\usepackage[top=1.5cm, bottom=1.5cm, left=1.5cm, right=1.5cm]{geometry}
+\usepackage[colorlinks=red]{hyperref} 
+\hypersetup{urlcolor=blue, citecolor=red} 
+\usepackage[all]{xy} 
+\usepackage{graphicx} 
+\usepackage{enumitem}
+\usepackage{authblk}
+\usepackage[export]{adjustbox}
+\usepackage{float}
+\usepackage[most]{tcolorbox}
+\usepackage{chngcntr}
+
+\counterwithin{figure}{section}
+
+% \newtcolorbox{mybox}{colback=black!5!white,colframe=black,
+%   boxrule=0.8mm,arc=4mm,boxsep=5pt}
+
+
+
+\title{
+    \Large Rapport Mini-Projet – Partie \uppercase\expandafter{\romannumeral 2}\\
+    \textbf{La Maison de la Culture}
+} 
+
+\author{
+    WENDELS Jérémy \\
+    THIEFFRY Raphaël
+}
+\affil{Université Paris-Saclay - UFR des Sciences}
+
+
+% \newcommand{\figZoom}[1]{
+% \begin{figure}[H]
+%     \raggedleft
+%     \includegraphics[width=5cm]{./images/#1.png}
+% \end{figure}
+% } 
+% \newcommand{\fig}[2]{
+% \figZoom{BDD_#1}
+% \begin{figure}[H]
+%     \centering
+%     \includegraphics[width=\textwidth, max height=9cm]{./images/#1.png}
+%     \protect\caption{#2} 
+% \end{figure}
+% }
+
+
+\date{\today}
+
+\begin{document}
+
+    \maketitle
+    \tableofcontents
+
+    \newpage
+
+
+    \section*{Partie A}
+    Les attributs écrits en \textbf{gras} sont les clés de chaque relation, ie: pour R(\textbf{A, B}, C, D) on a \{A, B\} determine ($\rightarrow$) C et D.
+    \section{Entités}
+        \subsection{Entités non faibles}
+            \subsubsection{Résident}
+                \paragraph*{Avant fusion} Résident(\textbf{N\_SS}, Nom\_Hab, Prén\_Hab, Genre, Date\_Nat) \\
+                Habite(Numer\_AP, Num\_Bât, N\_SS) \\
+                Habite(N\_SS) $\subseteq$ Résident(N\_SS) \\
+                Habite(Numer\_AP, Num\_Bât) $\subseteq$ Appart(Numer\_AP, Num\_Bât)
+                \paragraph*{Après fusion (avec Habite)} Résident(\textbf{N\_SS}, Nom\_Hab, Prén\_Hab, Genre, Date\_Nat, Num\_AP, Num\_Bât)\textit{not null Num\_AP, Num\_Bât} \\
+                Résident(Num\_AP, Num\_Bât) $\subseteq$ Appart(Num\_AP, Num\_Bât)
+                
+                \paragraph{Justification} On peut voir ici que les champs \og Num\_AP\fg et \og Num\_Bât\fg sont des clés étrangères qui font référence à la relation Appart. Ce lien est possible du fait de la multiplicité de la relation Appart qui est de $(1,1)$. Cela nous épargne une relation dediée à la résidence des habitants. D'ailleurs, puisqu'un habitant a nécessairement une habitation, on precise bien que les champs \og Num\_AP\fg et \og Num\_Bât\fg ne peuvent pas être null.
+                
+
+            \subsubsection{Discipline}
+                \noindent Discipline(\textbf{Num\_DA}, Nom\_DA)
+                \paragraph{Justification}On ne peut rien simplifier ici car les multiplicités aux abords de discipline sont de type $(0,n)$.
+
+            \subsubsection{Activité}
+                \paragraph*{Avant fusion} Activité(\textbf{id\_Act}, Nom\_Act, Pratique) \\
+                Discipline\_Activité(Num\_DA, id\_Act) \\
+                Discipline\_Activité(id\_Act) $\subseteq$ Activité(id\_Act) \\
+                Discipline\_Activité(Num\_DA) $\subseteq$ Discipline(Num\_DA)
+                
+                \paragraph*{Après fusion (avec association Discipline\_Activité)}
+                Activité(\textbf{id\_Act}, Nom\_Act, Pratique, Num\_DA) \textit{not null Num\_DA}  \\ 
+                Activité(Num\_DA) $\subseteq$ Discipline(Num\_DA)
+                
+                \paragraph{Justification}On peut voir ici que les champs \og Num\_DA\fg est une clé étrangère qui fait référence à l'entité Discipline. Ce lien est possible du fait de la multiplicité de la relation Discipline qui est de $(1,1)$. Cela nous épargne une relation dediée à la discipline des activités. D'ailleurs, puisqu'une activité a nécessairement une discipline, on precise bien que le champ \og Num\_DA\fg ne peut pas être null.
+
+
+            \subsubsection{Atelier}
+                \paragraph*{Avant fusion} Atelier(\textbf{Num\_AT}, Niveau, Min, Max) \\
+                Thème(Num\_AT, id\_Act) \\
+                Anime(N\_SS, Num\_AT) \\
+                Thème(Num\_AT) $\subseteq$ Atelier(Num\_AT) \\
+                Thème(id\_Act) $\subseteq$ Activité(id\_Act) \\
+                Anime(N\_SS) $\subseteq$ Résident(N\_SS) \\
+                Anime(Num\_AT) $\subseteq$ Atelier(Num\_AT)
+
+                \paragraph*{Après fusion (avec association Thème et Anime)}
+                Atelier(\textbf{Num\_AT}, Niveau, Min, Max, N\_SS\_animateur, id\_Act) \textit{not null N\_SS\_animateur, id\_Act}\\
+                Atelier(N\_SS\_animateur) $\subseteq$ Résident(N\_SS) \\
+                Atelier(id\_Act) $\subseteq$ Activité(id\_Act)
+                
+                \paragraph{Justification}On peut voir ici que les champs \og N\_SS\_animateur\fg et \og id\_Act\fg sont des clés étrangères qui font référence à la relation Résident et Activité. Ce lien est possible du fait de la multiplicité de la relation Thème et Anime qui sont de $(1,1)$. Cela nous épargne une relation dediée à l'animateur des ateliers et au thème des ateliers. D'ailleurs, puisqu'un atelier a nécessairement un animateur et une activité, on precise bien que les champs \og N\_SS\_animateur\fg  et \og id\_Act\fg ne peuvent pas être null.
+
+            \subsubsection{Bâtiment, Local et Immeuble}
+                \noindent Bâtiment(\textbf{Id\_Bât}, Nom\_Bat, Num\_Rue, Rue, CP)\\
+                Immeuble(\textbf{Id\_Bât} \textit{not null}, Année) \\
+                Immeuble(Id\_Bât) $\subseteq$ Bâtiment(Id\_Bât) \\
+                Local(\textbf{Id\_Bât} \textit{not null}, Type) \\
+                Local(Id\_Bât) $\subseteq$ Bâtiment(Id\_Bât) \\ 
+                Local(Id\_Bât) $\cap$ Immeuble(Id\_Bât) $= \emptyset$ 
+
+                \paragraph{Justification}La relation Bâtiment n'a rien de specifique en ce qu'elle n'admet aucune rélation vers l'exterieur. En revanche, Local et Immeuble sont des sous-ensembles de Bâtiment. On peut donc voir que les champs \og Id\_Bât\fg sont des clés étrangères qui font référence à la relation Bâtiment. De plus, un local ne peut pas etre un immeuble et vice-versa. D'où l'intersection vide entre les deux relations.
+
+
+                \subsubsection{Horaire}
+                \noindent Horaire(\textbf{Jour}, \textbf{Créneau}) \\
+                Dom(Horaire(Créneau)) $= \left\{\text{AM1}, \text{AM2}, \text{PM1}, \text{PM2}, \text{PM3}, \text{PM4}\right\}$ \\
+                Dom(Horaire(Jour)) $= \left\{\text{Lundi}, \text{Mardi}, \text{Mercredi}, \text{Jeudi}, \text{Vendredi}, \text{Samedi}, \text{Dimanche}\right\}$ 
+
+                \paragraph{Justification}Horaire n'a rien ne particulier, mais nous avons quand même décidé de rajouter les domaines de ses attributs pour plus de clarté.
+            
+            \subsection{Entités faibles}
+                
+            
+                \subsubsection{Appart}
+                \noindent Appart(\textbf{Num\_AP}, \textbf{Id\_Bât}, Pièces) \\
+                Appart(Id\_Bât) $\subseteq$ Immeuble(Id\_Bât)
+                \paragraph{Justification}Ici, appart est une entité faible de Immeuble. On peut donc voir que les champs \og Id\_Bât\fg est une clé étrangère qui fait référence à la relation Immeuble. Cette information, rajoutée à Num\_AP, permet de déterminer un appartement de manière unique. 
+            
+                \subsubsection{Salle}
+                \noindent Salle(\textbf{Etage}, \textbf{Num\_S}, \textbf{Id\_Bât}) \\
+                Salle(Id\_Bât) $\subseteq$ Local(Id\_Bât)
+                \paragraph{Justification}Parallelement à appart, mais avec une clef impliquant 2 attributs, on a Salle une entité faible de local.
+                
+
+
+    \section{Associations}
+        \subsection{Parrainage}
+            \noindent Parrainage(N\_SS\_Parrain \textit{not null}, N\_SS\_Filleul \textit{not null}) \\
+            Parrainage(N\_SS\_Parrain) $\subseteq$ Résident(N\_SS) \\
+            Parrainage(N\_SS\_Filleul) $\subseteq$ Résident(N\_SS)
+            \paragraph{Justification}Ici, parrainage relie un résident à un autre résident. On peut donc voir que les champs \og N\_SS\_Parrain\fg et \og N\_SS\_Filleul\fg sont des clés étrangères qui font référence à la relation Résident. De plus, un parrainage étant nécessairement entre deux résidents, les champs \og N\_SS\_Parrain\fg et \og N\_SS\_Filleul\fg ne doivent pas pouvoir être null.
+        
+        \subsection{Participe}
+            \noindent Participe(N\_SS \textit{not null}, Num\_AT \textit{not null}) \\
+            Participe(N\_SS) $\subseteq$ Résident(N\_SS) \\
+            Participe(Num\_AT) $\subseteq$ Atelier(Num\_AT) \\
+            Participe(N\_SS, Num\_AT) $\cap$ Atelier(N\_SS\_animateur, Num\_AT) $= \emptyset$
+            \paragraph{Justification}Participe est un peu particulier dans la mesure où il est indiqué dans le texte de présentation qu'un participant à un atelier donné ne pouvait pas être l'animateur de cet atelier. C'est pourquoi on a rajouté l'intersection vide entre Participe et Atelier. On peut donc voir que les champs \og N\_SS\fg et \og Num\_AT\fg sont des clés étrangères qui font référence à la relation Résident et Atelier. 
+            De plus, un participant à un atelier étant nécessairement un résident et un atelier existant forcement, les champs \og N\_SS\fg et \og Num\_AT\fg ne doivent pas pouvoir être null.   
+
+        \subsection{Lieu possible}
+            \noindent Lieu possible(Num\_DA, Num\_S, Etage, Id\_Bât, Capacité) \textit{not null Num\_DA, Num\_S, Etage, Id\_Bât} \\
+            Lieu possible(Num\_DA) $\subseteq$ Discipline(Num\_DA) \\
+            Lieu possible(Num\_S, Etage, Id\_Bât) $\subseteq$ Salle(Num\_S, Etage, Id\_Bât)
+            \paragraph{Justification}Puisque lieu possible contient un attribut d'association, capacité trouve donc naturellement sa place dans cette relation. On peut donc voir que les champs \og Num\_DA\fg, \og Num\_S\fg, \og Etage\fg et \og Id\_Bât\fg sont des clés étrangères qui font référence à la relation Discipline et Salle. De plus, un lieu possible étant nécessairement une discipline et une salle, les champs \og Num\_DA\fg, \og Num\_S\fg, \og Etage\fg et \og Id\_Bât\fg ne doivent pas pouvoir être null.
+        
+        \subsection{A lieu}
+            \noindent A lieu(\textbf{Num\_AT}, \textbf{Jour}, Créneau, Etage, Num\_S) \\
+            A lieu(Num\_AT) $=$ Atelier(Num\_AT) \\
+            A lieu(Jour, Créneau) $\subseteq$ Horaire(Jour, Créneau) \\
+            A lieu(Etage, Num\_S, Id\_Bât) $\subseteq$ Salle(Etage, Num\_S, Id\_Bât) \\
+            A lieu(Jour, Créneau, Etage, Num\_S, Num\_Bât) $\rightarrow$ A lieu(Num\_AT)
+            \paragraph{Justification}Cette association étant la seule triple association du diagramme, on a décidé de la détailler un peu plus. En premier lieu, on peut voir que les champs \og Num\_AT\fg, \og Jour\fg, \og Créneau\fg, \og Etage\fg, \og Num\_S\fg et \og Id\_Bât\fg sont des clés étrangères qui font référence à la relation Atelier, Horaire et Salle. Ensuite, un Atelier ayant forcement lieu quelque part à un horaire donné, il est clair que l'affirmation \og Atelier(Num\_AT) $\subseteq$ A lieu(Num\_AT)\fg est verifiée.
+            De plus, la dependance fonctionnelle \og A lieu(Jour, Créneau, Etage, Num\_S, Num\_Bât) $\rightarrow$ A lieu(Num\_AT)\fg atteste du fait que 2 atteliers ne peuvent pas avoir lieu en même temps dans la même salle.
+            Et pour finir, Num\_AT et Jour formant une clé de A lieu, cela exprime le fait que un atelier ne peut pas avoir lieu 2 fois le même jour (conformément au texte descriptif).
+
+        
+\end{document}

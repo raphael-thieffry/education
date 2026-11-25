@@ -1,0 +1,129 @@
+<h1 id="projet-informatique-rapport">Projet Informatique: Rapport</h1>
+<h2 id="r-ponses-aux-questions">Réponses aux questions</h2>
+<h3 id="point-1">Point 1</h3>
+<p><img style="width: 400px" src="dependances.png" alt=""></p>
+<h3 id="point-2">Point 2</h3>
+<pre><code class="lang-python">def test_evaluate(self):
+   <span class="hljs-comment"># former le adder</span>
+   <span class="hljs-attr">bc</span> = bool_circ.half_adder(<span class="hljs-number">3</span>)
+
+   self.assertTrue(bc.is_well_formed())
+
+
+   <span class="hljs-comment"># initialiser les input</span>
+   <span class="hljs-attr">inp1</span> = bool_circ.fromint(<span class="hljs-number">4</span>, <span class="hljs-attr">regsize=4)</span>
+   <span class="hljs-attr">inp2</span> = bool_circ.fromint(<span class="hljs-number">3</span>, <span class="hljs-attr">regsize=4)</span>
+
+
+   <span class="hljs-comment"># fusionner les deux chiffres en un meme circuit</span>
+   <span class="hljs-attr">inp</span> = inp1.parallel(inp2)
+
+
+   <span class="hljs-comment"># brancher ce circuit inp en entree du adder</span>
+   <span class="hljs-attr">a_evaluer</span> = bc.compose(inp)
+
+
+   <span class="hljs-comment"># evaluer ce circuit successivment jusqu'a obtenir l'output (4 noeuds)</span>
+   a_evaluer.evaluate()
+
+
+   <span class="hljs-comment"># afficher le graphe simplifier -&gt; contient 4+3 en binaire</span>
+   a_evaluer.display()
+</code></pre>
+<p><img style="width: 400px" src="adder4plus3.png" alt=""></p>
+<h3 id="point-3">Point 3</h3>
+<p><img style="width: 400px" src="adder0.png" alt=""></p>
+<p>La profondeur d&#39;un half adder de registres de taille <code>n</code> est <code>3x2^n+3</code>.</p>
+<p>Le nombre de portes d&#39;un half adder de registres de taille <code>n</code> est <code>5x2^n</code>.</p>
+<p>Voir les fichiers <a href="tests/d0_prof.pdf">adder(0)</a>, <a href="tests/d1_prof.pdf">adder(1)</a>,
+<a href="tests/d2_prof.pdf">adder(2)</a> et <a href="tests/d3_prof.pdf">adder(3)</a> qui épaulent cette conjecture.</p>
+<p>Le chemin le plus court d&#39;une entrée vers une sortie est de longueur 4: c&#39;est les input en tête de registre
+qui sont connectés à un seul adder 0, et qui sont donc a distance <code>1 + plusCourtCheminVersOutput(adder0) + 1</code>
+soit 4.</p>
+<h3 id="point-4">Point 4</h3>
+<p>En premier lieu nous avons vérifié l&#39;identité :
+pour cela il suffit simplement de composer dec et enc, puis de réécrire.</p>
+<pre><code class="lang-python">def test_reecrit(self):
+   <span class="hljs-keyword">enc</span> = bool_circ.<span class="hljs-keyword">enc</span>()
+   <span class="hljs-keyword">dec</span> = bool_circ.<span class="hljs-keyword">dec</span>()
+   identite___esperons = <span class="hljs-keyword">dec</span>.compose(<span class="hljs-keyword">enc</span>)
+   identite___esperons.reecrit()
+   identite___esperons.<span class="hljs-keyword">display</span>()
+</code></pre>
+<p>Nous avons eu quelques bugs, notamment la fonction de copie de circuit et
+la fonction de composition mais ces problèmes ont été résolus.</p>
+<p>Nous avons ensuite exécuté &quot;reecrit&quot; sur ce circuit ainsi obtenu,
+et nous avons obtenu le circuit que voici :</p>
+<p><img style="width: 400px" src="what_should_be_identity.png" alt=""></p>
+<p><br></p>
+<p>On constate qu&#39;il s&#39;agit bien de l&#39;identité même si (input)-&gt;(xor) n&#39;a pas été simplifié
+(pas dans les règles de réécriture, on pourrait le rajouter si on le souhaite).</p>
+<p>Concernant la vérification des erreur, il suffit simplement de rajouter un not (~)
+juste avant un des output de enc avant de composer.</p>
+<pre><code class="lang-python">def test_erreur(self):
+   <span class="hljs-keyword">enc</span> = bool_circ.<span class="hljs-keyword">enc</span>()
+   <span class="hljs-keyword">dec</span> = bool_circ.<span class="hljs-keyword">dec</span>()
+
+
+   # ajout du premier tilde -- ne casse pas -- equivalent a <span class="hljs-keyword">l</span>'identite
+   id_output_quelconque = <span class="hljs-keyword">enc</span>.outputs[0]
+   node_output_quelconque = <span class="hljs-keyword">enc</span>.get_node_by_id(id_output_quelconque)
+   parent = <span class="hljs-keyword">list</span>(node_output_quelconque.get_parents_ids())[0]
+   <span class="hljs-keyword">enc</span>.remove_edge(parent, id_output_quelconque)
+   node_tilde_extra = <span class="hljs-keyword">enc</span>.add_node(<span class="hljs-string">"~"</span>)
+   <span class="hljs-keyword">enc</span>.add_edge(parent, node_tilde_extra)
+   <span class="hljs-keyword">enc</span>.add_edge(node_tilde_extra, id_output_quelconque)
+
+
+   identite___esperons = <span class="hljs-keyword">dec</span>.compose(<span class="hljs-keyword">enc</span>)
+   identite___esperons.reecrit()
+   identite___esperons.<span class="hljs-keyword">display</span>()
+</code></pre>
+<p><img style="width: 400px" src="what_should_be_identity.png" alt=""></p>
+<p>De la même manière on peut vérifier qu&#39;après réécriture,
+si on introduit 2 erreurs ça ne donne pas l&#39;identité.</p>
+<pre><code class="lang-python">def test_erreur(self):
+   <span class="hljs-keyword">enc</span> = bool_circ.<span class="hljs-keyword">enc</span>()
+   <span class="hljs-keyword">dec</span> = bool_circ.<span class="hljs-keyword">dec</span>()
+
+
+   # ajout du premier tilde -- ne casse pas -- equivalent a <span class="hljs-keyword">l</span>'identite
+   id_output_quelconque = <span class="hljs-keyword">enc</span>.outputs[0]
+   node_output_quelconque = <span class="hljs-keyword">enc</span>.get_node_by_id(id_output_quelconque)
+   parent = <span class="hljs-keyword">list</span>(node_output_quelconque.get_parents_ids())[0]
+   <span class="hljs-keyword">enc</span>.remove_edge(parent, id_output_quelconque)
+   node_tilde_extra = <span class="hljs-keyword">enc</span>.add_node(<span class="hljs-string">"~"</span>)
+   <span class="hljs-keyword">enc</span>.add_edge(parent, node_tilde_extra)
+   <span class="hljs-keyword">enc</span>.add_edge(node_tilde_extra, id_output_quelconque)
+
+
+   # ajout du second tilde -- casse , non equivalent a <span class="hljs-keyword">l</span>'identite
+   id_output_quelconque = <span class="hljs-keyword">enc</span>.outputs[1]
+   node_output_quelconque = <span class="hljs-keyword">enc</span>.get_node_by_id(id_output_quelconque)
+   parent = <span class="hljs-keyword">list</span>(node_output_quelconque.get_parents_ids())[0]
+   <span class="hljs-keyword">enc</span>.remove_edge(parent, id_output_quelconque)
+   node_tilde_extra = <span class="hljs-keyword">enc</span>.add_node(<span class="hljs-string">"~"</span>)
+   <span class="hljs-keyword">enc</span>.add_edge(parent, node_tilde_extra)
+   <span class="hljs-keyword">enc</span>.add_edge(node_tilde_extra, id_output_quelconque)
+
+
+   identite___esperons = <span class="hljs-keyword">dec</span>.compose(<span class="hljs-keyword">enc</span>)
+   identite___esperons.reecrit()
+   identite___esperons.<span class="hljs-keyword">display</span>()
+</code></pre>
+<p><img style="width: 400px" src="cassee.png" alt=""></p>
+<p>Pendant le debuggage nous avons pu mettre en place un système d&#39;affichage de l&#39;état du graphe lorsque réécrit s&#39;occupe d&#39;un nœud particulier (avec arrêt d&#39;exécution grâce à input()).
+Cela à été plus que pratique pour tester les différents cas de réécriture&quot;</p>
+<h2 id="descriptif">Descriptif</h2>
+<h3 id="test">Test</h3>
+<p>Nous nous sommes assurés d&#39;écrire des tests pour chaque fonctionnalité
+afin de s&#39;assurer de son bon fonctionnement.</p>
+<h3 id="evaluate">Evaluate</h3>
+<p>Evaluate a été légèrement modifié par rapport aux indications fournies dans les feuilles de TP, dans la mesure où il s&#39;arrête non pas seulement quand les cofeuilles sont immédiatement reliées à des output, mais vérifie aussi que ces cofeuilles sont bien des 0 ou des 1</p>
+<p>En effet il ne faut pas arrêter la simplification lorsqu&#39;on est dans un cas (opérateur)-&gt;(output), il faut encore s&#39;occuper des éléments neutres</p>
+<h3 id="r-crit">Réécrit</h3>
+<p>Réécrit lui n&#39;a pas été modifié dans la mesure où le résultat reste assez évocateur pour être compris dans le cas des codes de hamming.</p>
+<p>Nous avons remarqué que le résultat pouvait finir dans un format (input)-&gt;(opérateur binaire à qui on a fourni 1 seul parent)-&gt;(output)</p>
+<p>La règle (input)-&gt;(^) &lt;=&gt; (input)-&gt; n&#39;étant pas spécifiée, nous avons fait le choix de ne pas l&#39;implémenter pour les raisons évoqués plus haut.</p>
+<h3 id="parse-parentheses">Parse parentheses</h3>
+<p>Parse parenthèses ne fonctionne malheureusement pas comme nous le souhaitions, il passe correctement les tests fournis dans les feuilles mais en utilisation pratique pour enc() et dec() il a été impossible de produire le résultat attendu.</p>

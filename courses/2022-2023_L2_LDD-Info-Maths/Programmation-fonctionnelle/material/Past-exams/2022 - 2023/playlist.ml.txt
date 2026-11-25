@@ -1,0 +1,94 @@
+type track = { title : string;
+               length : int;  (* en secondes *)
+               album : string;
+               artist : string }
+
+type play_queue = { prev_tracks : track list;
+                    next_tracks : track list }
+
+(* question 1 *)
+
+let pr_track tr =
+  Printf.printf "%s: %s (%s) [%d]\n" tr.album tr.title tr.artist tr.length
+
+(* question 2 *)
+
+let pr_track_list trl =
+  List.iter pr_track trl
+
+(* question 3 *)
+
+let pr_play_queue pq = 
+  Printf.printf "Previous tracks:\n";
+  pr_track_list pq.prev_tracks;
+  Printf.printf "Next tracks:\n";
+  pr_track_list pq.next_tracks
+
+
+(* question 4 *)
+let next pq = 
+  match pq.next_tracks with
+  (* il reste au moins 2 morceaux dans next_track *)
+    t1 :: t2 :: l -> { prev_tracks = t1 :: pq.prev_tracks;
+                       next_tracks = t2 :: l }
+  | _ -> (* sinon il reste 0 ou 1 morceau on renvoie la valeur inchangée *) pq
+(* on aurait pu aussi faire à la place du dernier cas :
+   | [t] -> pq
+   | [] -> failwith "playlist invalide"
+   car l'énoncé ne précise pas le comportement pour la liste vide *)
+
+(* question 5 *)
+let next_loop pq =
+  match pq.next_tracks with
+    [] -> { prev_tracks = []; next_tracks = List.rev pq.next_tracks }
+  | _ -> next pq
+
+
+(* question 6 *)
+
+let remaining_time pq =
+  List.fold_left (fun acc tr -> acc + tr.length) 0 pq.next_tracks
+
+(* question 7 *)
+
+let shuffle pq =
+  let lst = List.map (fun tr -> (Random.float 1.0, tr))
+      (pq.prev_tracks @ pq.next_tracks) in
+
+  let slst =
+    (* on trie en comparant selon la première composante *)
+    List.sort (fun x1 x2 -> compare (fst x1) (fst x2)) lst
+  in
+  { prev_tracks = [];
+    (* on applique snd, sur tous les éléments de la liste triée *)
+    next_tracks = List.map snd slst }
+
+
+(* question 8 *)
+
+let tidy pq =
+  (* on écrit une fonction récursive auxiliaire
+     qui suppose que la liste passée en argument
+     est triée par album.
+     On aurait pu écrire cette fonction avec un List.fold_left
+     mais la fonction passée en argument aurait été un peu
+     dure à lire.
+
+     La fonction inspecte à la fois la liste de tous les morceaux
+     et l'accumulateur
+  *)
+
+  let rec group_by_album acc lst =
+    match lst, acc with
+      [], _ -> acc (* arrivé en fin de liste *)
+    | tr :: llst, [] -> (* premier morceau, on a trouvé aucun album *)
+      group_by_album [ (tr.album, [ tr ]) ] llst
+    | tr :: llst, (album, al)::aacc ->
+      if tr.album = album then
+        group_by_album ((album, tr::al) :: aacc) llst (* on place le track courant en tete de l'album en cours*)
+      else
+        group_by_album ((tr.album, [tr]):: (album, al) :: aacc) llst
+        (* on change d'album *)
+  in
+  group_by_album []
+    (List.sort (fun t1 t2 -> compare t1.album t2.album) (pq.next_tracks @ pq.prev_tracks))

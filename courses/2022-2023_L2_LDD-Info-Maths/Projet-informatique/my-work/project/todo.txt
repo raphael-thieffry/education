@@ -1,0 +1,8 @@
+- test assert_is_well_formed()
+- Mettre des tests supplementaires sur is_well_formed()
+- mettre des tests en plus un peu partout (type sur graphes vides ou vraiment mal foutus)
+~ eventuellement regler is_well_formed en cobinant la partie 1-2-3 en seulement 2 boucles
+
+
+eventuellement restructurer 
+~ TD1 EXO3.3 class nodeTest 

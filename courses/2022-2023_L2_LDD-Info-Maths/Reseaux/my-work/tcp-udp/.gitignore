@@ -1,0 +1,10 @@
+cli
+serv
+*.o
+.vscode
+client_t
+serv_t
+cli_tcp
+cli_udp
+serv_udp
+serv_tcp
