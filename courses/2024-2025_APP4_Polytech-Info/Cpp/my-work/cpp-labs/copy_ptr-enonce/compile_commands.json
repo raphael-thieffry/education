@@ -1,0 +1,12 @@
+[
+{
+  "directory": "/mnt/c/Users/rapha/Documents/cppApp4/copy_ptr-enonce",
+  "command": "/usr/bin/c++   -I/mnt/c/Users/rapha/Documents/cppApp4/copy_ptr-enonce/include    -Wall -Wextra -Wconversion -Wsign-conversion -std=gnu++17 -o CMakeFiles/test_copy_ptr_poly.dir/tests/copy_ptr_poly.cpp.o -c /mnt/c/Users/rapha/Documents/cppApp4/copy_ptr-enonce/tests/copy_ptr_poly.cpp",
+  "file": "/mnt/c/Users/rapha/Documents/cppApp4/copy_ptr-enonce/tests/copy_ptr_poly.cpp"
+},
+{
+  "directory": "/mnt/c/Users/rapha/Documents/cppApp4/copy_ptr-enonce",
+  "command": "/usr/bin/c++   -I/mnt/c/Users/rapha/Documents/cppApp4/copy_ptr-enonce/include    -Wall -Wextra -Wconversion -Wsign-conversion -std=gnu++17 -o CMakeFiles/test_copy_ptr.dir/tests/copy_ptr.cpp.o -c /mnt/c/Users/rapha/Documents/cppApp4/copy_ptr-enonce/tests/copy_ptr.cpp",
+  "file": "/mnt/c/Users/rapha/Documents/cppApp4/copy_ptr-enonce/tests/copy_ptr.cpp"
+}
+]

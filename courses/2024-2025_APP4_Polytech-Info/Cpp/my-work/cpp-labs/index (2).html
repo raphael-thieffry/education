@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html style="--highlight-default-color: #2c5091; --notLearned-color: #a32727; --default-color: #404040; --radical-tag-color: #65b6ae; --kanji-tag-color: #e7e485; --vocab-tag-color: #fc759b; --int-color: #c0c0c0; --ap1-color: #84bedb; --ap2-color: #58afdb; --ap3-color: #2ca2de; --ap4-color: #0093de; --gr1-color: #65ab63; --gr2-color: #15af12; --mst-color: #bd772f; --enl-color: #b255bd; --brn-color: #b34b50;"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+        <meta charset="UTF-8">
+        <title>APP4 2024-2025, Programmation C++ &amp;nbsp;&amp;nbsp;&amp;nbsp; *Joël Falcou (prof), Sylvain Joube (chargé de TD)*</title>
+        <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+        
+        <link rel="stylesheet" href="index%20(2)_fichiers/markdown.css">
+<link rel="stylesheet" href="index%20(2)_fichiers/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+        
+    <style>@font-face {
+              font-family: 'Open Sans Regular';
+              font-style: normal;
+              font-weight: 400;
+              src: url('moz-extension://3a947c4e-b5dd-470e-8534-a7d48fe968bf/fonts/open_sans/open-sans-v18-latin-regular.woff');
+          }</style><style>@font-face {
+              font-family: 'Open Sans Bold';
+              font-style: normal;
+              font-weight: 800;
+              src: url('moz-extension://3a947c4e-b5dd-470e-8534-a7d48fe968bf/fonts/open_sans/OpenSans-Bold.woff');
+          }</style><style>@font-face {
+              font-family: 'Open Sans ExtraBold';
+              font-style: normal;
+              font-weight: 800;
+              src: url('moz-extension://3a947c4e-b5dd-470e-8534-a7d48fe968bf/fonts/open_sans/open-sans-v18-latin-800.woff');
+          }</style></head>
+    <body class="vscode-body vscode-light" cz-shortcut-listen="true">
+        <h1 id="app4-2024-2025-programmation-c--joël-falcou-prof-sylvain-joube-chargé-de-td">APP4 2024-2025, Programmation C++ &nbsp;&nbsp;&nbsp; <em>Joël Falcou (prof), Sylvain Joube (chargé de TD)</em></h1>
+<p><br><br></p>
+<p><a href="https://sjoube.net/APP4_2024/APP4_pointeurs.pdf">Une présentation des pointeurs en C++ et de ce fameux <code>int main(int argc, char** argv)</code></a>
+<br><br></p>
+<h1 id="tp-01-app4---06-09-2024">TP 01 APP4 - 06-09-2024</h1>
+<ul>
+<li>
+<p><a href="https://sjoube.net/APP4_2024/tp1_2024-09-06/tp01_correction.cpp">Une correction pour ce TP</a></p>
+</li>
+<li>
+<p><a href="https://sjoube.net/APP4_2024/tp1_2024-09-06/tp01_q5_correction_alternative.cpp">Et une version alternative de la correction pour la question 5</a></p>
+</li>
+</ul>
+<p>Pour ce TP, partez du code <a href="https://sjoube.net/APP4_2024/tp1_2024-09-06/tp01_base.cpp">tp01_base.cpp</a>. Il est important de compiler avec <code>g++</code> et pas avec clang !</p>
+<p><a href="https://godbolt.org/z/YM4KKe61T">Lien vers le godbolt, éditeur en ligne utilisé en cours</a></p>
+<br>
+<h3 id="question-1">Question 1</h3>
+<p>Écrire une fonction libre (ie pas une fonction membre d'une classe) nommée <code>trace</code>
+ qui prend en paramètre une base_matrix (par référence const). Et devra 
+calculer la trace de la matrice, c'est à dire la somme de ses éléments 
+diagonaux. Signature attendue : <code>double trace(base_matrix const&amp; base_matrix)</code>. Vérifier que ça fonctionne avec les deux types de matrix : <code>dense_matrix</code> et <code>diagonal_matrix</code>.</p>
+<br>
+<h3 id="question-2">Question 2</h3>
+<p>Exemple d'utilisation de std::chrono :</p>
+<pre><code class="language-c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;chrono&gt;</span></span>
+
+...
+
+<span class="hljs-keyword">auto</span> start = std::chrono::system_clock::<span class="hljs-built_in">now</span>();
+<span class="hljs-comment">/* Code donc le temps est à mesurer (en secondes) */</span>
+<span class="hljs-keyword">auto</span> stop  = std::chrono::system_clock::<span class="hljs-built_in">now</span>();
+std::chrono::duration&lt;<span class="hljs-type">double</span>&gt; duration = stop - start;
+<span class="hljs-keyword">auto</span> elapsed_time = duration.<span class="hljs-built_in">count</span>(); <span class="hljs-comment">// temps en secondes, nombre décimal</span>
+</code></pre>
+<p>En utilisant <code>std::chrono</code>, mesurer le temps pris par de 
+nombreux appels à la fonction trace, pour chaque type de matrice. Faire 
+un nombre d'appels suffisant pour que le temps soit d'environ une 
+seconde. Essayer plusieurs tailles de matrices et noter les résultats 
+obtenus : taille <code>10*10</code>, <code>100*100</code>, <code>500*500</code>. On ne cherche pas à comparer dense à diagonal, juste à avoir un point de référence entre dense et diagonal.</p>
+<p>Pour créer les matrices, faire quelque chose du genre <code>diagonal_matrix* dm = new diagonal_matrix(n);</code> La suppression de l'objet se fait en faisant <code>delete dm;</code></p>
+<br>
+<h3 id="question-3">Question 3</h3>
+<p>Faire un 2ème bench avec un pointeur <code>base_matrix*</code>. Attendre une entrée clavier, si on tape "d" c'est dense, sinan c'est diagonal. Pour l'instant on fait des <code>new</code> et <code>delete</code>, on fera <code>unique_ptr</code> la semaine prochaine. Le code pourrait ressembler à quelque chose du genre :</p>
+<pre><code class="language-c++"><span class="hljs-type">char</span> c;
+std::cin &gt;&gt; c;
+
+base_matrix* p1;
+base_matrix* p2;
+
+<span class="hljs-keyword">if</span>(c == <span class="hljs-string">'f'</span>)
+{
+  p1 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">dense_matrix</span>(<span class="hljs-number">200</span>);
+  p2 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">diagonal_matrix</span>(<span class="hljs-number">200</span>);
+}
+<span class="hljs-keyword">else</span>
+{
+  p1 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">diagonal_matrix</span>(<span class="hljs-number">200</span>);
+  p2 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">dense_matrix</span>(<span class="hljs-number">200</span>);
+}
+
+<span class="hljs-comment">// appeler trace sur p1 et p2, afficher les temps pris, respectivement.</span>
+</code></pre>
+<p>Même nombre de répétition que pour le premier bench. Bien comprendre ce qu'on mesure et d'où vient la différence.</p>
+<br>
+<h3 id="question-4">Question 4</h3>
+<p>Dupliquer le fichier source (pour garder les deux). Modifier le code pour que get et set ne soient plus des membres virtuels de <code>base_matrix</code> et seulement des fonctions membres de <code>diagonal_matrix</code> et <code>dense_matrix</code> (donc sans mot clé <code>virtual</code>).
+ On veut désormais que la fonction trace soit virtuelle elle-même, 
+membre de base_matrix et correctement réimplémentée par ses deux classes
+ filles. Donc on veut que get et set ne soient plus dans la classe de 
+base mais dans les sous-classes filles uniquement.</p>
+<br>
+<h3 id="question-5---bonus">Question 5 - bonus</h3>
+<p>5.1) Comment faire pour écrire une fonction virtuelle add dans la 
+classe de base (base_matrix), qui fait la somme des deux matrices ? La 
+fonction add doit être publique. On veut pouvoir faire :</p>
+<pre><code class="language-c++">base_matrix* a;
+base_matrix* b;
+
+base_matrix* sum = a.<span class="hljs-built_in">add</span>(b);
+</code></pre>
+<p>5.2) On veut que le type retourné par add soit du bon type : 
+diagonal_matrix* si on a deux matrices diagonales, et dense_matrix* si 
+on a au moins une matrice dense dans l'addition.</p>
+<p><br><br><br><br></p>
+<h1 id="tp-02-app4---lundi-09-09-2024">TP 02 APP4 - lundi 09-09-2024</h1>
+<br>
+<h2 id="sujet-zero-containers-12">Sujet zero-containers (1/2)</h2>
+<!-- - [Une correction pour zero-containers](tp2_2024-09-09/zero-containers-correction.zip) -->
+<p>Télécharger l'énoncé de <a href="https://sjoube.net/APP4_2024/tp2_2024-09-09/zero-containers-enonce.zip">zero-containers</a>. Le sujet est dans le code du TP, fichier <code>include/zero-containers.hpp</code>.</p>
+<h2 id="en-utilisant-cmake">En utilisant cmake</h2>
+<p>Pré-requis : il vous faut avoir une installation fonctionnelle de cmake.</p>
+<p>Pour compiler via cmake, dans le répertoire de votre énoncé (pas le <code>/include</code>) :</p>
+<pre><code class="language-bash">cmake .
+make
+./zero-containers
+</code></pre>
+<p>Il n'y a besoin de faire le <code>cmake .</code> qu'une seule fois. Pour build à nouveau le projet, il suffit de faire <code>make</code>, et toujours pour exécuter <code>./zero-containers</code>. Ou, pour compiler et exécuter, en une ligne : <code>make &amp;&amp; ./zero-containers</code>.</p>
+<h2 id="sans-utiliser-cmake">Sans utiliser cmake</h2>
+<p>Dans le fichier <code>main.cpp</code>, il faut remplacer le <code>#include &lt;zero-containers.hpp&gt;</code> par <code>#include "include/zero-containers.hpp"</code> puis effectuer la commande suivante : <code>g++ -o zero-containers main.cpp</code>. L'exécution du programme est la même que précédemment : <code>./zero-containers</code>. Soit, si on veut tout faire en une ligne : <code>g++ -o zero-containers main.cpp &amp;&amp; ./zero-containers</code>.</p>
+<br>
+<h2 id="sujet-raii_file-22">Sujet raii_file (2/2)</h2>
+<!-- - [Une correction pour raii_file](tp2_2024-09-09/raii-file-correction.zip) -->
+<p>Télécharger l'énoncé de <a href="https://sjoube.net/APP4_2024/tp2_2024-09-09/raii-file-enonce.zip">raii_file</a>. Le sujet est dans le code du TP, fichier <code>raii_file.hpp</code>, comme tout à l'heure, le fichier abritant la fonction main ne nous sert qu'à tester le code du fichier <code>.hpp</code>.</p>
+<p>Et comme précédemment :</p>
+<ul>
+<li>Il vous est possible de compiler avec le cmake : <code>cmake .</code> suivi de <code>make</code> et <code>./raii_file_test</code></li>
+<li>Ou de compiler avec g++ (cette fois, rien à modifier dans le fichier <code>.cpp</code>) : <code>g++ -o zero-raii_file_test raii_file.cpp &amp;&amp; ./raii_file_test</code>.</li>
+</ul>
+<p><br> <br></p>
+<h1 id="tp-03-app4---lundi-09-09-2024">TP 03 APP4 - lundi 09-09-2024</h1>
+<!-- - [Une correction pour ce tp](tp3_2024-09-09/tp3_corrige.cpp) -->
+<p>Finissez le TP précédent. Une fois fini, passez au TP3, <a href="https://sjoube.net/APP4_2024/tp3_2024-09-09/tp3_sujet.cpp">l'énoncé est dans le <code>.cpp</code> à télécharger ici.</a></p>
+<!-- # TP 04 APP4 - mardi 03-10-2023 : number-variant -->
+<p><br><br><br></p>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+        
+        
+    
+    </body></html>

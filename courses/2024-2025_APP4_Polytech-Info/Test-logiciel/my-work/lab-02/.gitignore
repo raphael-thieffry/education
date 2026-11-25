@@ -1,0 +1,51 @@
+# Ignore les fichiers de sortie compilés
+/target/
+out/
+
+# Ignore les logs et autres fichiers temporaires
+*.log
+*.tmp
+*.bak
+*.swp
+*.DS_Store
+
+# Ignorer les fichiers spécifiques à Maven
+.mvn/
+!.mvn/wrapper/maven-wrapper.jar
+**/target/
+**/generated-sources/
+**/dependency-reduced-pom.xml
+**/release.properties
+
+# Fichiers et dossiers spécifiques à IntelliJ IDEA
+.idea/
+*.iml
+*.iws
+.idea/modules.xml
+.idea/workspace.xml
+.idea/libraries/
+.idea/vcs.xml
+.idea/.name
+
+# Dossiers spécifiques à Eclipse
+.classpath
+.project
+.settings/
+target/
+bin/
+
+# Dossiers spécifiques à NetBeans
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
+
+# Fichiers spécifiques à VS Code
+.vscode/
+
+# Fichiers système
+Thumbs.db
+.DS_Store
+*.class

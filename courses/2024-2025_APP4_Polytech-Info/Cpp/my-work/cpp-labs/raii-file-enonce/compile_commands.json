@@ -1,0 +1,7 @@
+[
+{
+  "directory": "/mnt/c/Users/rapha/Documents/cppApp4/raii-file-enonce",
+  "command": "/usr/bin/c++      -Wall -Wextra -Werror -Wnull-dereference -Wold-style-cast -Wdouble-promotion -Wshadow -std=gnu++17 -o CMakeFiles/raii_file_test.dir/raii_file.cpp.o -c /mnt/c/Users/rapha/Documents/cppApp4/raii-file-enonce/raii_file.cpp",
+  "file": "/mnt/c/Users/rapha/Documents/cppApp4/raii-file-enonce/raii_file.cpp"
+}
+]

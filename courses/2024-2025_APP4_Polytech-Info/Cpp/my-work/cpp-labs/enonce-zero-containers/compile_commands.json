@@ -1,0 +1,7 @@
+[
+{
+  "directory": "/mnt/c/Users/rapha/Documents/cppApp4/enonce-zero-containers",
+  "command": "/usr/bin/c++   -I/mnt/c/Users/rapha/Documents/cppApp4/enonce-zero-containers/include    -Wall -Wextra -Werror -Wnull-dereference -Wold-style-cast -Wdouble-promotion -Wshadow -std=gnu++17 -o CMakeFiles/zero-containers.dir/main.cpp.o -c /mnt/c/Users/rapha/Documents/cppApp4/enonce-zero-containers/main.cpp",
+  "file": "/mnt/c/Users/rapha/Documents/cppApp4/enonce-zero-containers/main.cpp"
+}
+]

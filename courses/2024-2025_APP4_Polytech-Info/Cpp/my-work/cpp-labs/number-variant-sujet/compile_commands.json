@@ -1,0 +1,22 @@
+[
+{
+  "directory": "/mnt/c/Users/rapha/Documents/cppApp4/number-variant-sujet",
+  "command": "/usr/bin/c++   -I/mnt/c/Users/rapha/Documents/cppApp4/number-variant-sujet/include    -Wall -Wextra -Werror -Wnull-dereference -Wold-style-cast -Wdouble-promotion -Wshadow -std=gnu++17 -o CMakeFiles/number-variant.dir/src/arithmetic.cpp.o -c /mnt/c/Users/rapha/Documents/cppApp4/number-variant-sujet/src/arithmetic.cpp",
+  "file": "/mnt/c/Users/rapha/Documents/cppApp4/number-variant-sujet/src/arithmetic.cpp"
+},
+{
+  "directory": "/mnt/c/Users/rapha/Documents/cppApp4/number-variant-sujet",
+  "command": "/usr/bin/c++   -I/mnt/c/Users/rapha/Documents/cppApp4/number-variant-sujet/include    -Wall -Wextra -Werror -Wnull-dereference -Wold-style-cast -Wdouble-promotion -Wshadow -std=gnu++17 -o CMakeFiles/number-variant.dir/src/main.cpp.o -c /mnt/c/Users/rapha/Documents/cppApp4/number-variant-sujet/src/main.cpp",
+  "file": "/mnt/c/Users/rapha/Documents/cppApp4/number-variant-sujet/src/main.cpp"
+},
+{
+  "directory": "/mnt/c/Users/rapha/Documents/cppApp4/number-variant-sujet",
+  "command": "/usr/bin/c++   -I/mnt/c/Users/rapha/Documents/cppApp4/number-variant-sujet/include    -Wall -Wextra -Werror -Wnull-dereference -Wold-style-cast -Wdouble-promotion -Wshadow -std=gnu++17 -o CMakeFiles/number-variant.dir/src/number_factory.cpp.o -c /mnt/c/Users/rapha/Documents/cppApp4/number-variant-sujet/src/number_factory.cpp",
+  "file": "/mnt/c/Users/rapha/Documents/cppApp4/number-variant-sujet/src/number_factory.cpp"
+},
+{
+  "directory": "/mnt/c/Users/rapha/Documents/cppApp4/number-variant-sujet",
+  "command": "/usr/bin/c++   -I/mnt/c/Users/rapha/Documents/cppApp4/number-variant-sujet/include    -Wall -Wextra -Werror -Wnull-dereference -Wold-style-cast -Wdouble-promotion -Wshadow -std=gnu++17 -o CMakeFiles/number-variant.dir/src/printing.cpp.o -c /mnt/c/Users/rapha/Documents/cppApp4/number-variant-sujet/src/printing.cpp",
+  "file": "/mnt/c/Users/rapha/Documents/cppApp4/number-variant-sujet/src/printing.cpp"
+}
+]

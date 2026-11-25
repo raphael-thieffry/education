@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html style="--highlight-default-color: #2c5091; --notLearned-color: #a32727; --default-color: #404040; --radical-tag-color: #65b6ae; --kanji-tag-color: #e7e485; --vocab-tag-color: #fc759b; --int-color: #c0c0c0; --ap1-color: #84bedb; --ap2-color: #58afdb; --ap3-color: #2ca2de; --ap4-color: #0093de; --gr1-color: #65ab63; --gr2-color: #15af12; --mst-color: #bd772f; --enl-color: #b255bd; --brn-color: #b34b50;"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+        <meta charset="UTF-8">
+        <title>TP 4 : CRTP &amp; Variadic Function (Parameter Pack) &amp; Adaptor</title>
+        <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+/* From extension ms-toolsai.jupyter */
+/* These classnames are inherited from bootstrap, but are present in most notebook renderers */
+
+.alert {
+    width: auto;
+    padding: 1em;
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+.alert > *:last-child {
+    margin-bottom: 0;
+}
+#preview > .alert:last-child {
+    /* Prevent this being set to zero by the default notebook stylesheet */
+    padding-bottom: 1em;
+}
+
+.alert-success {
+    /* Note there is no suitable color available, so we just copy "info" */
+    background-color: var(--theme-info-background);
+    color: var(--theme-info-foreground);
+}
+.alert-info {
+    background-color: var(--theme-info-background);
+    color: var(--theme-info-foreground);
+}
+.alert-warning {
+    background-color: var(--theme-warning-background);
+    color: var(--theme-warning-foreground);
+}
+.alert-danger {
+    background-color: var(--theme-error-background);
+    color: var(--theme-error-foreground);
+}
+
+</style>
+        
+        <link rel="stylesheet" href="TP%204%20_%20CRTP%20&amp;%20Variadic%20Function%20(Parameter%20Pack)%20&amp;%20Adaptor_fichiers/markdown.css">
+<link rel="stylesheet" href="TP%204%20_%20CRTP%20&amp;%20Variadic%20Function%20(Parameter%20Pack)%20&amp;%20Adaptor_fichiers/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+        
+    <style>@font-face {
+              font-family: 'Open Sans Regular';
+              font-style: normal;
+              font-weight: 400;
+              src: url('moz-extension://3a947c4e-b5dd-470e-8534-a7d48fe968bf/fonts/open_sans/open-sans-v18-latin-regular.woff');
+          }</style><style>@font-face {
+              font-family: 'Open Sans Bold';
+              font-style: normal;
+              font-weight: 800;
+              src: url('moz-extension://3a947c4e-b5dd-470e-8534-a7d48fe968bf/fonts/open_sans/OpenSans-Bold.woff');
+          }</style><style>@font-face {
+              font-family: 'Open Sans ExtraBold';
+              font-style: normal;
+              font-weight: 800;
+              src: url('moz-extension://3a947c4e-b5dd-470e-8534-a7d48fe968bf/fonts/open_sans/open-sans-v18-latin-800.woff');
+          }</style></head>
+    <body class="vscode-body vscode-light" cz-shortcut-listen="true">
+        <h1 id="tp-4--crtp--variadic-function-parameter-pack--adaptor">TP 4 : CRTP &amp; Variadic Function (Parameter Pack) &amp; Adaptor</h1>
+<p>Si vous avez des soucis d'affichage sur la page web, <a href="https://sjoube.net/APP4_2024/tp6_2024-09-13/TP_04_CRTP-Variadic-Function.pdf">lien vers le pdf original</a> (seules les parties 1 et 2 sont à traiter).</p>
+<p>Compiler avec les options suivantes (ou équivalentes) :<br>
+<code>-Wall -Wextra -Wconversion -Wsign-conversion -std=c++11 (ou -std=c++14) -pedantic</code></p>
+<p><br><br><br></p>
+<h1 id="partie-1--curiously-recurring-template-pattern-crtp">Partie 1 : Curiously Recurring Template Pattern (CRTP)</h1>
+<p>On part du code suivant :</p>
+<pre><code class="language-c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;memory&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">mother_t</span> 
+{
+<span class="hljs-keyword">public</span>:
+  <span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-type">void</span> <span class="hljs-title">fct</span><span class="hljs-params">()</span> <span class="hljs-type">const</span> </span>{ std::cout &lt;&lt; <span class="hljs-string">"mother_t"</span> &lt;&lt; std::endl; }
+  <span class="hljs-function">std::unique_ptr&lt;<span class="hljs-type">mother_t</span>&gt; <span class="hljs-title">clone</span><span class="hljs-params">()</span> <span class="hljs-type">const</span>
+  </span>{
+    <span class="hljs-keyword">return</span> std::<span class="hljs-built_in">make_unique</span>&lt;<span class="hljs-type">mother_t</span>&gt;();
+  }
+};
+
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">daughter_t</span> : <span class="hljs-keyword">public</span> <span class="hljs-type">mother_t</span>
+{
+<span class="hljs-keyword">public</span>:
+  <span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-type">void</span> <span class="hljs-title">fct</span><span class="hljs-params">()</span> <span class="hljs-type">const</span> </span>{ std::cout &lt;&lt; <span class="hljs-string">"daughter_t"</span> &lt;&lt; std::endl; }
+  <span class="hljs-function">std::unique_ptr&lt;<span class="hljs-type">mother_t</span>&gt; <span class="hljs-title">clone</span><span class="hljs-params">()</span> <span class="hljs-type">const</span>
+  </span>{
+    <span class="hljs-keyword">return</span> std::<span class="hljs-built_in">make_unique</span>&lt;<span class="hljs-type">daughter_t</span>&gt;();
+  }
+};
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span>
+</span>{
+  <span class="hljs-keyword">auto</span> p1 = std::<span class="hljs-built_in">make_unique</span>&lt;<span class="hljs-type">mother_t</span>&gt;();
+  p1-&gt;<span class="hljs-built_in">fct</span>();
+  std::unique_ptr&lt;<span class="hljs-type">mother_t</span>&gt; p2 = std::<span class="hljs-built_in">make_unique</span>&lt;<span class="hljs-type">daughter_t</span>&gt;();
+  p2-&gt;<span class="hljs-built_in">fct</span>();
+  <span class="hljs-keyword">auto</span> r = p2-&gt;<span class="hljs-built_in">clone</span>();
+  r-&gt;<span class="hljs-built_in">fct</span>();
+}
+</code></pre>
+<p>On veut que la fonction <code>.fct()</code> de la classe <code>mother_t</code> affiche « mother_t » et <code>.fct()</code> de la classe <code>daughter_t</code> affiche « daughter_t ».</p>
+<ol>
+<li>Quel est le type de p ? de p1 ? Quels sont les trois affichages voulus ?</li>
+<li>Que retourne la fonction .clone() de mother_t ? et daughter_t ? Pourquoi ?</li>
+<li>Donner l’implémentation des fonctions .clone().</li>
+<li>Pourquoi une redéfinition de .clone() est nécessaire ? Comment générer automatiquement la fonction .clone() ?</li>
+<li>Écrire une classe template cloneable qui prend deux types (base_t et derived_t)
+et qui implémente la fonction .clone(). On sait que derived_t héritera cloneable :
+c’est-à-dire que cloneable peut être caster (avec static_cast) en derived_t.</li>
+<li>De quelle(s) classe(s) hérite mother_t ? et daughter_t ?</li>
+<li>Avec ce code, quelle est l’erreur de compilation ?
+Résoudre le souci avec le mot clé using : <a href="http://en.cppreference.com/w/cpp/language/using_declaration">http://en.cppreference.com/w/cpp/language/using_declaration</a></li>
+</ol>
+<br>
+<h2 id="solution">Solution</h2>
+<pre><code class="language-c++"><span class="hljs-comment">// g++ -Wall -Wextra -Wconversion -Wsign-conversion -std=c++14 -pedantic</span>
+<span class="hljs-comment">// main.cpp -o main &amp;&amp; ./main</span>
+
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;memory&gt;</span></span>
+
+<span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">class</span> <span class="hljs-title class_">base_t</span>, <span class="hljs-keyword">class</span> <span class="hljs-title class_">derived_t</span> = <span class="hljs-type">base_t</span>&gt; <span class="hljs-keyword">class</span> cloneable {
+<span class="hljs-keyword">public</span>:
+  <span class="hljs-keyword">virtual</span> ~<span class="hljs-built_in">cloneable</span>() {}
+
+  <span class="hljs-keyword">virtual</span> std::unique_ptr&lt;<span class="hljs-type">base_t</span>&gt; <span class="hljs-built_in">clone</span>() <span class="hljs-type">const</span> {
+    <span class="hljs-keyword">return</span> std::<span class="hljs-built_in">make_unique</span>&lt;<span class="hljs-type">derived_t</span>&gt;(<span class="hljs-built_in">static_cast</span>&lt;<span class="hljs-type">derived_t</span> <span class="hljs-type">const</span> &amp;&gt;(*<span class="hljs-keyword">this</span>));
+  }
+};
+
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">mother_t</span> : <span class="hljs-keyword">public</span> cloneable&lt;<span class="hljs-type">mother_t</span>&gt; {
+<span class="hljs-keyword">public</span>:
+  <span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-type">void</span> <span class="hljs-title">fct</span><span class="hljs-params">()</span> <span class="hljs-type">const</span> </span>{ std::cout &lt;&lt; <span class="hljs-string">"mother_t"</span> &lt;&lt; std::endl; }
+};
+
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">daughter_t</span> : <span class="hljs-keyword">public</span> <span class="hljs-type">mother_t</span>, <span class="hljs-keyword">public</span> cloneable&lt;<span class="hljs-type">mother_t</span>, <span class="hljs-type">daughter_t</span>&gt; {
+<span class="hljs-keyword">public</span>:
+  <span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-type">void</span> <span class="hljs-title">fct</span><span class="hljs-params">()</span> <span class="hljs-type">const</span> </span>{ std::cout &lt;&lt; <span class="hljs-string">"daughter_t"</span> &lt;&lt; std::endl; }
+
+  <span class="hljs-keyword">using</span> cloneable&lt;<span class="hljs-type">mother_t</span>, <span class="hljs-type">daughter_t</span>&gt;::clone;
+};
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+  <span class="hljs-keyword">auto</span> p = std::<span class="hljs-built_in">make_unique</span>&lt;<span class="hljs-type">mother_t</span>&gt;();
+  p-&gt;<span class="hljs-built_in">fct</span>();
+
+  <span class="hljs-keyword">auto</span> p1 = std::<span class="hljs-built_in">make_unique</span>&lt;<span class="hljs-type">daughter_t</span>&gt;();
+  p1-&gt;<span class="hljs-built_in">fct</span>();
+
+  p = p1-&gt;<span class="hljs-built_in">clone</span>();
+  p-&gt;<span class="hljs-built_in">fct</span>();
+}
+</code></pre>
+<p><br><br><br></p>
+<h1 id="la-partie-2-nest-plus-demandée-passez-à-lexo-suivant">La partie 2 n'est plus demandée, passez à l'exo suivant</h1>
+<h1 id="partie-2--affichage-avec-localprint"><del>Partie 2 : Affichage Avec local::print<del></del></del></h1>
+<p>La fonction printf du langage C a (au moins) deux inconvénients : il 
+faut préciser le type à afficher et il n’est pas possible de gérer les 
+types utilisateurs.</p>
+<p>L’utilisation de l’opérateur <code>&lt;&lt;</code> entre un <code>std::ostream</code> et ce que l’on veut afficher permet de régler ces soucis.</p>
+<p>On souhaite écrire une fonction <code>local::print</code> qui permettrait d’écrire ce code :</p>
+<pre><code class="language-c++">local::<span class="hljs-built_in">print</span>(<span class="hljs-string">"Use"</span>, ’ ’, std::<span class="hljs-built_in">string</span>(<span class="hljs-string">"local::print"</span>), <span class="hljs-string">" to print: "</span>,
+<span class="hljs-number">42</span>, <span class="hljs-string">" + "</span>, <span class="hljs-number">21.73</span>, <span class="hljs-string">" = "</span>, <span class="hljs-number">42</span> + <span class="hljs-number">21.73</span>, ’\n’);
+</code></pre>
+<p>Pour écrire une telle fonction, il faudra utiliser un parameter pack : <a href="http://en.cppreference.com/w/cpp/language/parameter_pack">http://en.cppreference.com/w/cpp/language/parameter_pack</a></p>
+<p>1.1 Écrire une fonction <code>local::fprint</code> qui prend un <code>std::ostream</code> et qui "force" l’affichage avec std::flush dans le flux.
+2 / 4
+2. Écrire une fonction <code>local::fprint</code> qui prend un <code>std::ostream</code>, un T const &amp; et un
+parameter <em>pack</em> <code>args_t const &amp; ...</code>
+3. Écrire la fonction <code>local::print</code>.</p>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+        
+        
+    
+    </body></html>
