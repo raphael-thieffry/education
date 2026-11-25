@@ -1,0 +1,8 @@
+numpy>=1.23
+matplotlib
+pandas
+geopandas
+contextily
+shapely
+scikit-learn
+seaborn

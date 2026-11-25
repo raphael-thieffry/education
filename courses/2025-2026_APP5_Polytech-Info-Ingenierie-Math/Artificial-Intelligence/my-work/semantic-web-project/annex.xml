@@ -1,0 +1,275 @@
+   <?xml version="1.0" encoding="UTF-8"?>
+<rdf:RDF
+        xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+        xmlns:ex="http://example.org/books/"
+        xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+        xmlns:sesame="http://www.openrdf.org/schema/sesame#"
+        xmlns:owl="http://www.w3.org/2002/07/owl#"
+        xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+        xmlns:fn="http://www.w3.org/2005/xpath-functions#"
+        xmlns:foaf="http://xmlns.com/foaf/0.1/"
+        xmlns:dc="http://purl.org/dc/elements/1.1/"
+        xmlns:hint="http://www.bigdata.com/queryHints#"
+        xmlns:bd="http://www.bigdata.com/rdf#"
+        xmlns:bds="http://www.bigdata.com/rdf/search#"
+        xmlns:psn="http://www.wikidata.org/prop/statement/value-normalized/"
+        xmlns:pqn="http://www.wikidata.org/prop/qualifier/value-normalized/"
+        xmlns:prn="http://www.wikidata.org/prop/reference/value-normalized/"
+        xmlns:mwapi="https://www.mediawiki.org/ontology#API/"
+        xmlns:gas="http://www.bigdata.com/rdf/gas#"
+        xmlns:wdsubgraph="https://query.wikidata.org/subgraph/"
+        xmlns:wdt="http://www.wikidata.org/prop/direct/"
+        xmlns:wdtn="http://www.wikidata.org/prop/direct-normalized/"
+        xmlns:psv="http://www.wikidata.org/prop/statement/value/"
+        xmlns:ps="http://www.wikidata.org/prop/statement/"
+        xmlns:pqv="http://www.wikidata.org/prop/qualifier/value/"
+        xmlns:pq="http://www.wikidata.org/prop/qualifier/"
+        xmlns:prv="http://www.wikidata.org/prop/reference/value/"
+        xmlns:pr="http://www.wikidata.org/prop/reference/"
+        xmlns:wdno="http://www.wikidata.org/prop/novalue/"
+        xmlns:p="http://www.wikidata.org/prop/"
+        xmlns:wikibase="http://wikiba.se/ontology#"
+        xmlns:wd="http://www.wikidata.org/entity/"
+        xmlns:wdata="http://www.wikidata.org/wiki/Special:EntityData/"
+        xmlns:wds="http://www.wikidata.org/entity/statement/"
+        xmlns:wdv="http://www.wikidata.org/value/"
+        xmlns:wdref="http://www.wikidata.org/reference/"
+        xmlns:schema="http://schema.org/"
+        xmlns:prov="http://www.w3.org/ns/prov#"
+        xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+        xmlns:geo="http://www.opengis.net/ont/geosparql#"
+        xmlns:geof="http://www.opengis.net/def/geosparql/function/"
+        xmlns:mediawiki="https://www.mediawiki.org/ontology#"
+        xmlns:ontolex="http://www.w3.org/ns/lemon/ontolex#"
+        xmlns:dct="http://purl.org/dc/terms/"
+        xmlns:wikibaseqs="http://wikiba.se/queryService#">
+
+<rdf:Description rdf:about="http://www.wikidata.org/entity/Q22689551">
+        <ex:title xml:lang="en">Maḥāsin al-taʼwīl</ex:title>
+        <ex:pages rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">6316</ex:pages>
+        <ex:writtenBy rdf:resource="http://www.wikidata.org/entity/Q4308814"/>
+        <ex:authorName xml:lang="en">Jamal al-Din al-Qasimi</ex:authorName>
+        <ex:authorChildCount rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</ex:authorChildCount>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.wikidata.org/entity/Q4308814">
+        <ex:name xml:lang="en">Jamal al-Din al-Qasimi</ex:name>
+        <ex:children rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</ex:children>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.wikidata.org/entity/Q107009855">
+        <ex:title xml:lang="en">Al-Mawrid al-Akbar: a modern English-Arabic dictionary</ex:title>
+        <ex:pages rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">2155</ex:pages>
+        <ex:writtenBy rdf:resource="http://www.wikidata.org/entity/Q12245889"/>
+        <ex:authorName xml:lang="en">Monir Al-Balbaki</ex:authorName>
+        <ex:authorChildCount rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2</ex:authorChildCount>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.wikidata.org/entity/Q12245889">
+        <ex:name xml:lang="en">Monir Al-Balbaki</ex:name>
+        <ex:children rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2</ex:children>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.wikidata.org/entity/Q136342630">
+        <ex:title xml:lang="en">The Camp of the Saints</ex:title>
+        <ex:pages rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">3416</ex:pages>
+        <ex:writtenBy rdf:resource="http://www.wikidata.org/entity/Q1383662"/>
+        <ex:authorName xml:lang="en">Jean Raspail</ex:authorName>
+        <ex:authorChildCount rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2</ex:authorChildCount>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.wikidata.org/entity/Q1383662">
+        <ex:name xml:lang="en">Jean Raspail</ex:name>
+        <ex:children rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2</ex:children>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.wikidata.org/entity/Q1109006">
+        <ex:title xml:lang="en">Chambers's Encyclopaedia</ex:title>
+        <ex:pages rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">12600</ex:pages>
+        <ex:writtenBy rdf:resource="http://www.wikidata.org/entity/Q515008"/>
+        <ex:authorName xml:lang="en">Robert Chambers</ex:authorName>
+        <ex:authorChildCount rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">4</ex:authorChildCount>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.wikidata.org/entity/Q515008">
+        <ex:name xml:lang="en">Robert Chambers</ex:name>
+        <ex:children rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">4</ex:children>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.wikidata.org/entity/Q51501918">
+        <ex:title xml:lang="en">Manual of tropical medicine</ex:title>
+        <ex:pages rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">2512</ex:pages>
+        <ex:writtenBy rdf:resource="http://www.wikidata.org/entity/Q524137"/>
+        <ex:authorName xml:lang="en">Aldo Castellani</ex:authorName>
+        <ex:authorChildCount rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</ex:authorChildCount>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.wikidata.org/entity/Q524137">
+        <ex:name xml:lang="en">Aldo Castellani</ex:name>
+        <ex:children rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</ex:children>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.wikidata.org/entity/Q1789619">
+        <ex:title xml:lang="en">Croatian Encyclopedia</ex:title>
+        <ex:pages rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">9272</ex:pages>
+        <ex:writtenBy rdf:resource="http://www.wikidata.org/entity/Q18446"/>
+        <ex:authorName xml:lang="en">Dalibor Brozović</ex:authorName>
+        <ex:authorChildCount rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</ex:authorChildCount>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.wikidata.org/entity/Q18446">
+        <ex:name xml:lang="en">Dalibor Brozović</ex:name>
+        <ex:children rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</ex:children>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.wikidata.org/entity/Q3684204">
+        <ex:title xml:lang="en">As You Desire Me</ex:title>
+        <ex:pages rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">2081</ex:pages>
+        <ex:writtenBy rdf:resource="http://www.wikidata.org/entity/Q1403"/>
+        <ex:authorName xml:lang="en">Luigi Pirandello</ex:authorName>
+        <ex:authorChildCount rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">3</ex:authorChildCount>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.wikidata.org/entity/Q1403">
+        <ex:name xml:lang="en">Luigi Pirandello</ex:name>
+        <ex:children rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">3</ex:children>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.wikidata.org/entity/Q106881271">
+        <ex:title xml:lang="en">Internationales Handwörterbuch des Gewerkschaftswesens</ex:title>
+        <ex:pages rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">2170</ex:pages>
+        <ex:writtenBy rdf:resource="http://www.wikidata.org/entity/Q122517"/>
+        <ex:authorName xml:lang="en">Ludwig Heyde</ex:authorName>
+        <ex:authorChildCount rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</ex:authorChildCount>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.wikidata.org/entity/Q122517">
+        <ex:name xml:lang="en">Ludwig Heyde</ex:name>
+        <ex:children rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</ex:children>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.wikidata.org/entity/Q106881271">
+        <ex:writtenBy rdf:resource="http://www.wikidata.org/entity/Q63434"/>
+        <ex:authorName xml:lang="en">Adam Stegerwald</ex:authorName>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.wikidata.org/entity/Q63434">
+        <ex:name xml:lang="en">Adam Stegerwald</ex:name>
+        <ex:children rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</ex:children>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.wikidata.org/entity/Q3927728">
+        <ex:title xml:lang="en">Tonight We Improvise</ex:title>
+        <ex:pages rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">2146</ex:pages>
+        <ex:writtenBy rdf:resource="http://www.wikidata.org/entity/Q1403"/>
+        <ex:authorName xml:lang="en">Luigi Pirandello</ex:authorName>
+        <ex:authorChildCount rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">3</ex:authorChildCount>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.wikidata.org/entity/Q138660580">
+        <ex:title xml:lang="en">Daijiten</ex:title>
+        <ex:pages rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">2602</ex:pages>
+        <ex:writtenBy rdf:resource="http://www.wikidata.org/entity/Q11359904"/>
+        <ex:authorName xml:lang="en">Ueda Kazutoshi</ex:authorName>
+        <ex:authorChildCount rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</ex:authorChildCount>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.wikidata.org/entity/Q11359904">
+        <ex:name xml:lang="en">Ueda Kazutoshi</ex:name>
+        <ex:children rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</ex:children>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.wikidata.org/entity/Q1632269">
+        <ex:title xml:lang="en">Il fu Mattia Pascal</ex:title>
+        <ex:pages rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">4674</ex:pages>
+        <ex:writtenBy rdf:resource="http://www.wikidata.org/entity/Q1403"/>
+        <ex:authorName xml:lang="en">Luigi Pirandello</ex:authorName>
+        <ex:authorChildCount rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">12</ex:authorChildCount>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.wikidata.org/entity/Q1403">
+        <ex:children rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">12</ex:children>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.wikidata.org/entity/Q8868553">
+        <ex:title xml:lang="en">L'uomo, la bestia e la virtù</ex:title>
+        <ex:pages rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">2406</ex:pages>
+        <ex:writtenBy rdf:resource="http://www.wikidata.org/entity/Q1403"/>
+        <ex:authorName xml:lang="en">Luigi Pirandello</ex:authorName>
+        <ex:authorChildCount rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">3</ex:authorChildCount>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.wikidata.org/entity/Q1632269">
+        <ex:pages rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">4790</ex:pages>
+        <ex:authorChildCount rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">3</ex:authorChildCount>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.wikidata.org/entity/Q131740195">
+        <ex:title xml:lang="en">Daijiten (1941)</ex:title>
+        <ex:pages rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">2602</ex:pages>
+        <ex:writtenBy rdf:resource="http://www.wikidata.org/entity/Q11359904"/>
+        <ex:authorName xml:lang="en">Ueda Kazutoshi</ex:authorName>
+        <ex:authorChildCount rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</ex:authorChildCount>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.wikidata.org/entity/Q1137873">
+        <ex:title xml:lang="en">The Camp of the Saints</ex:title>
+        <ex:pages rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">3416</ex:pages>
+        <ex:writtenBy rdf:resource="http://www.wikidata.org/entity/Q1383662"/>
+        <ex:authorName xml:lang="en">Jean Raspail</ex:authorName>
+        <ex:authorChildCount rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2</ex:authorChildCount>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.wikidata.org/entity/Q1247426">
+        <ex:title xml:lang="en">Oxford Dictionary of Byzantium</ex:title>
+        <ex:pages rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">2338</ex:pages>
+        <ex:writtenBy rdf:resource="http://www.wikidata.org/entity/Q942541"/>
+        <ex:authorName xml:lang="en">Alexander Kazhdan</ex:authorName>
+        <ex:authorChildCount rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</ex:authorChildCount>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.wikidata.org/entity/Q942541">
+        <ex:name xml:lang="en">Alexander Kazhdan</ex:name>
+        <ex:children rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</ex:children>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.wikidata.org/entity/Q47342623">
+        <ex:title xml:lang="en">Distribution and Taxonomy of Birds of the World</ex:title>
+        <ex:pages rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">11360</ex:pages>
+        <ex:writtenBy rdf:resource="http://www.wikidata.org/entity/Q592083"/>
+        <ex:authorName xml:lang="en">Burt Monroe</ex:authorName>
+        <ex:authorChildCount rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</ex:authorChildCount>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.wikidata.org/entity/Q592083">
+        <ex:name xml:lang="en">Burt Monroe</ex:name>
+        <ex:children rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</ex:children>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.wikidata.org/entity/Q16727000">
+        <ex:title xml:lang="en">Faizan-e-Sunnat</ex:title>
+        <ex:pages rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">2200</ex:pages>
+        <ex:writtenBy rdf:resource="http://www.wikidata.org/entity/Q6932517"/>
+        <ex:authorName xml:lang="en">Ilyas Qadri</ex:authorName>
+        <ex:authorChildCount rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">3</ex:authorChildCount>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.wikidata.org/entity/Q6932517">
+        <ex:name xml:lang="en">Ilyas Qadri</ex:name>
+        <ex:children rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">3</ex:children>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.wikidata.org/entity/Q104527790">
+        <ex:title xml:lang="en">Grzimek's Animal Life Encyclopedia, 2nd edition</ex:title>
+        <ex:pages rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">9000</ex:pages>
+        <ex:writtenBy rdf:resource="http://www.wikidata.org/entity/Q65906"/>
+        <ex:authorName xml:lang="en">Bernhard Grzimek</ex:authorName>
+        <ex:authorChildCount rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</ex:authorChildCount>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.wikidata.org/entity/Q65906">
+        <ex:name xml:lang="en">Bernhard Grzimek</ex:name>
+        <ex:children rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</ex:children>
+</rdf:Description>
+
+</rdf:RDF>
