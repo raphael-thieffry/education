@@ -1,0 +1,11 @@
+% FOLIO validation, story 258, example 702.  Translate, replacing every ???
+%   All humans are mortal.  All Greeks are humans.
+%   Conclusion: Some Greeks are mortal.
+formulas(assumptions).
+  all x (human(x) -> motal(x)).     % All humans are mortal.
+  all g (greek(g) -> mortal(g)).     % All Greeks are humans.
+end_of_list.
+
+formulas(goals).
+  exists g (greek(g) & mortal(g)).     % Some Greeks are mortal.
+end_of_list.

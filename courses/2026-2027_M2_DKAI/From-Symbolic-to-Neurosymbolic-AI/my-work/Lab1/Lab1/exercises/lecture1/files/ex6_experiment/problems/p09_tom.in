@@ -1,0 +1,10 @@
+% FOLIO validation, story 441, example 1270.  Same premises as p08_tom.in: copy them.
+%   Conclusion: If Tom is not both a grumpy person and mean to animals,
+%               then Tom is neither a grumpy person nor an animal lover.
+formulas(assumptions).
+  ???.     % (copy the five premises of p08_tom.in)
+end_of_list.
+
+formulas(goals).
+  ???.
+end_of_list.

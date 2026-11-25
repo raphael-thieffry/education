@@ -1,0 +1,11 @@
+% FOLIO validation, story 259, example 703
+%   All horses have hooves.  No humans have hooves.
+%   Conclusion: Some humans are horses.
+formulas(assumptions).
+  all x (horse(x) -> has_hooves(x)).     % All horses have hooves.
+  all x (human(x) -> -has_hooves(x)).    % No humans have hooves.
+end_of_list.
+
+formulas(goals).
+  exists x (human(x) & horse(x)).        % Some humans are horses.
+end_of_list.

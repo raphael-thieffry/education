@@ -1,0 +1,11 @@
+% FOLIO validation, story 282, example 726
+%   All squares are four-sided.  All four-sided things are shapes.
+%   Conclusion: All squares are shapes.
+formulas(assumptions).
+  all x (square(x) -> four_sided(x)).    % All squares are four-sided.
+  all x (four_sided(x) -> shape(x)).     % All four-sided things are shapes.
+end_of_list.
+
+formulas(goals).
+  all x (square(x) -> shape(x)).         % All squares are shapes.
+end_of_list.

@@ -1,0 +1,12 @@
+% Exercise 3 -- "all" and "some"
+%   All cats are mammals.  Some cats are black.  Are some mammals black?
+% Predicates: cat/1, mammal/1, black/1.   Replace every ??? and run.
+
+formulas(assumptions).
+  ???.          % All cats are mammals.
+  ???.          % Some cats are black.
+end_of_list.
+
+formulas(goals).
+  ???.          % Some mammals are black.
+end_of_list.

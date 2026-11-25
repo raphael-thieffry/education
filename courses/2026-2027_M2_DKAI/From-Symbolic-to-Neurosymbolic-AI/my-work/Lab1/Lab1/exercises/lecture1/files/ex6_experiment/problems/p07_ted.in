@@ -1,0 +1,16 @@
+% FOLIO validation, story 442, example 1273
+%   All Brown Swiss cattle are cows.  Some pets are Brown Swiss cattle.
+%   All cows are domesticated animals.  Alligators are not domesticated animals.
+%   Ted is an alligator.
+%   Conclusion: If Ted is a Brown Swiss cattle, then Ted is not a pet.
+formulas(assumptions).
+  all x (brown_swiss(x) -> cow(x)).              % All Brown Swiss cattle are cows.
+  exists x (pet(x) & brown_swiss(x)).            % Some pets are Brown Swiss cattle.
+  all x (cow(x) -> domesticated(x)).             % All cows are domesticated animals.
+  all x (alligator(x) -> -domesticated(x)).      % Alligators are not domesticated animals.
+  alligator(ted).                                % Ted is an alligator.
+end_of_list.
+
+formulas(goals).
+  brown_swiss(ted) -> -pet(ted).
+end_of_list.

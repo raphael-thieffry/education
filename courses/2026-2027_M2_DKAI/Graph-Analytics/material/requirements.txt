@@ -1,0 +1,5 @@
+networkx
+numpy
+scipy        # required by nx.pagerank
+matplotlib
+ipykernel

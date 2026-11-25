@@ -1,0 +1,14 @@
+% (g) replace the goal by mortal(x).
+% socrates.in -- the first example of Lecture 1 (complete: run it as it is)
+%   All men are mortal.  Socrates is a man.  Is Socrates mortal?
+
+% The premises (K)
+formulas(assumptions).
+  all x (man(x) -> mortal(x)).
+  man(socrates).
+end_of_list.
+
+% The question (phi)
+formulas(goals).
+  mortal(x).
+end_of_list.

@@ -1,0 +1,16 @@
+% demo_timeout.in -- a search that does not finish in 2 seconds (complete: run it as it is)
+%   P is transitive, every object is P-related to some object, no object is P-related to itself.
+%   Question: is there an object that no object is P-related to?
+% Expected: exit code 4 (max_seconds). It means "we do not know", never "no".
+
+assign(max_seconds, 2).
+
+formulas(assumptions).
+  all x all y all z ((P(x,y) & P(y,z)) -> P(x,z)).
+  all x exists y P(x,y).
+  all x -P(x,x).
+end_of_list.
+
+formulas(goals).
+  exists x all y -P(y,x).
+end_of_list.

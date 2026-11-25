@@ -1,0 +1,15 @@
+% FOLIO validation, story 441, example 1269.  Translate, replacing every ???
+%   No one nice to animals is also mean to animals.  Some grumpy people are mean to animals.
+%   All animal lovers are nice to animals.  All pet owners love animals.  Tom is a pet owner.
+%   Conclusion: Tom is not both a grumpy person and mean to animals.
+formulas(assumptions).
+  ???.     % No one nice to animals is also mean to animals.
+  ???.     % Some grumpy people are mean to animals.
+  ???.     % All animal lovers are nice to animals.
+  ???.     % All pet owners love animals.
+  ???.     % Tom is a pet owner.
+end_of_list.
+
+formulas(goals).
+  ???.     % Tom is not both a grumpy person and mean to animals.
+end_of_list.

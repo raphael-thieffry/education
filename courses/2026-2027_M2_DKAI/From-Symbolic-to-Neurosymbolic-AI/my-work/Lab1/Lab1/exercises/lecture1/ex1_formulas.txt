@@ -1,0 +1,58 @@
+% Exercise 1 -- English sentences as first-order formulas, in Prover9 syntax.
+%
+% Write ONE Prover9 formula after each "=" (the final period is optional), then run:
+%     python check_formulas.py
+%
+% Vocabulary (use nothing else; names are case-sensitive):
+%     predicates   student(x)  smart(x)  lazy(x)  passes(x)  knows(x, y)    "x knows y"
+%     function     advisor(x)                                                "the advisor of x"
+%     constants    alice  bob
+%
+% Reminder:   -  not    &  and    |  or    ->  implies    <->  if and only if
+%             =  equal  !=  different
+%             all x (...)     exists x (...)
+%
+% Example (already done):  "Alice is a student."
+s0 = student(alice)
+
+% s1.  Bob is not lazy.
+s1 = ???
+
+% s2.  All students are smart.
+s2 = ???
+
+% s3.  Some students are lazy.
+s3 = ???
+
+% s4.  No lazy student passes.
+s4 = ???
+
+% s5.  Not every student passes.
+s5 = ???
+
+% s6.  Alice is smart or lazy, but not both.
+s6 = ???
+
+% s7.  Bob passes only if Alice passes.
+s7 = ???
+
+% s8.  Alice passes unless she is lazy.
+s8 = ???
+
+% s9.  Only students pass.
+s9 = ???
+
+% s10. Every student knows some smart student.
+s10 = ???
+
+% s11. There is someone whom every student knows.
+s11 = ???
+
+% s12. The advisor of every student is smart.
+s12 = ???
+
+% s13. Alice and Bob are two different students.
+s13 = ???
+
+% s14. At most one student is lazy.
+s14 = ???

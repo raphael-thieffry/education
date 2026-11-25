@@ -1,0 +1,10 @@
+% Bonus -- is this text consistent?
+%   Every employee has access to the server.  Marc is an employee.
+%   Marc does not have access to the server.
+% Write the three premises. There is NO goals list in this file: run it as it is.
+
+formulas(assumptions).
+  ???.
+  ???.
+  ???.
+end_of_list.

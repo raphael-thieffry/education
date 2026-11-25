@@ -1,0 +1,14 @@
+% (b) delete the period after man(socrates)
+% socrates.in -- the first example of Lecture 1 (complete: run it as it is)
+%   All men are mortal.  Socrates is a man.  Is Socrates mortal?
+
+% The premises (K)
+formulas(assumptions).
+  all x (man(x) -> mortal(x)).
+  man(socrates)
+end_of_list.
+
+% The question (phi)
+formulas(goals).
+  mortal(socrates).
+end_of_list.

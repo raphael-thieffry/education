@@ -1,0 +1,28 @@
+Assuming rdf:type as type relation
+Using Support as pruning metric with minimum threshold 4.0
+Using recursivity limit 3
+Default mining assistant that defines support by counting support on both head variables
+No minimum threshold on standard confidence
+No minimum threshold on PCA confidence
+Constants in the arguments of relations are disabled
+Lossless (query refinement) heuristics enabled
+MRT calls: 0
+Using 1 threads
+Rule	Head Coverage	Standard Confidence	Pca Confidence	Support	Body Size	Pca Body Size	Functional Variable
+Search space size: 3
+Mining done in 0.013 s
+Used memory (peak) 73632 kilobytes
+0 rules mined.
+Created CSV run config output: ./run-2026-11-13T14:23:24.502878108Z.csv
+Run configuration :
+Timestamp,MaxRuleSize,PruningMetric,MinSup,MinHC,NThreads,SearchRuntime,MemoryPeak_kB,SearchSpace
+2026-11-13T14:23:24.502878108Z,3,Support,4.0,0.01,1,117,74612,3
+
+STDERR
+Using the default schema relations
+Loading files... 
+  Starting toy.tsv
+  Finished toy.tsv, still running: 0
+Loaded 19 facts in 0 s using 1 MB
+Starting the mining phase... 
+  Ended the mining phase... Total time 0.078 s

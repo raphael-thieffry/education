@@ -1,0 +1,18 @@
+% Exercise 5 -- the galette des rois
+% Vocabulary (do not change it):
+%   gives(x, s, p)    x gives slice s to p        colleague(p, q)   p is a colleague of q
+%   youngest(x)  slice(s)  has_feve(s)  guest(p)  crowned(p)
+%   constants: chloe, lea, p_victor
+
+formulas(assumptions).
+  all y all x all s (guest(x) & slice(s) & has_feve(s) & gives(y, s, x) & youngest(y) -> crowned(x)).   % (1) A guest who is given a slice containing the feve by the youngest child is crowned.
+  (all s1 all s2 (slice(s1) & slice(s2) & has_feve(s1) & has_feve(s2) -> s1 = s2)) & exists s (slice(s) & has_feve(s)).   % (2) One slice of the galette contains the feve.
+  all s (slice(s) & has_feve(s) -> gives(chloe, s, p_victor)).   % (3) Chloe gave every slice containing the feve to Victor.
+  youngest(chloe).   % (4) Chloe is the youngest child.
+  all c (colleague(c, lea) -> guest(c)).   % (5) Every colleague of Lea is a guest.
+  colleague(p_victor, lea).   % (6) Victor is a colleague of Lea.
+end_of_list.
+
+formulas(goals).
+  crowned(p_victor).   % Is Victor crowned?
+end_of_list.

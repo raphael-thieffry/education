@@ -1,0 +1,11 @@
+% FOLIO validation, story 292, example 736
+%   A hawk never swims.  Some birds are hawks.
+%   Conclusion: All birds swim.
+formulas(assumptions).
+  all x (hawk(x) -> -swims(x)).          % A hawk never swims.
+  exists x (bird(x) & hawk(x)).          % Some birds are hawks.
+end_of_list.
+
+formulas(goals).
+  all x (bird(x) -> swims(x)).           % All birds swim.
+end_of_list.

@@ -1,0 +1,16 @@
+% Exercise 4 -- the order of quantifiers
+%   "Every student has read a book"
+%   R1 (each their own book):  for every student x there is a book y that x has read
+%   R2 (one same book):        there is a book y that every student x has read
+% Predicates: student/1, book/1, read/2.
+% Make two copies of this file:
+%   ex4a.in   assumption R2, goal R1
+%   ex4b.in   assumption R1, goal R2
+
+formulas(assumptions).
+  exists y all x (student(x) -> book(y) & read(x, y)).
+end_of_list.
+
+formulas(goals).
+  all x exists y (student(x) -> book(y) & read(x, y)).
+end_of_list.

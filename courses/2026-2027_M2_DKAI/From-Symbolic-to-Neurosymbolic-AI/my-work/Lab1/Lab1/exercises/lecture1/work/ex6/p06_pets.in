@@ -1,0 +1,11 @@
+% FOLIO validation, story 256, example 700.  Translate, replacing every ???
+%   All cats are mammals.  Some pets are not mammals.
+%   Conclusion: No pets are cats.
+formulas(assumptions).
+  all c (cat(c) -> mammal(c)).     % All cats are mammals.
+  exists p (pet(p) & -mammal(p)).     % Some pets are not mammals.
+end_of_list.
+
+formulas(goals).
+  all p (pet(p) -> -cat(p)).     % No pets are cats.
+end_of_list.

@@ -1,0 +1,11 @@
+% FOLIO validation, story 280, example 724.  Translate, replacing every ???
+%   Events are either happy or sad.  At least one event is happy.
+%   Conclusion: All events are sad.
+formulas(assumptions).
+  ???.     % Events are either happy or sad.
+  ???.     % At least one event is happy.
+end_of_list.
+
+formulas(goals).
+  ???.     % All events are sad.
+end_of_list.

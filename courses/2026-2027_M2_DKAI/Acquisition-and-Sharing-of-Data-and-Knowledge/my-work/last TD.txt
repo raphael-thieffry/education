@@ -1,0 +1,12 @@
+fondationDate : Magazine->date
+
+Q1 - M11 et M21 sont des magazines
+Q2 - 
+a1 -> PF(titre) -> Reconcile(x,y) ∧ titre(x,v) ∧ titre(y,v′) ⇒ SynVals(v,v′)
+a3 -> PF(cityName) -> Reconcile(x,y) ∧ cityName(x,v) ∧ cityName(y,v′) ⇒ SynVals(v,v′)
+a7 -> PFI(contains) -> Reconcile(x,x') ∧ contains(y, x) ∧ contains(z, x') ⇒ Reconcile(y, z)
+a10 ->PFI(title, publishedBy) -> SynVals(x, x') ∧ title(y, x) ∧ title(z, x') ∧ publishedBy(y, v) ∧ publishedBy(z, v') ∧ SynVals(v, v') ⇒ Reconcile(y, z)
+
+reconcile <=> sameAs
+
+Q3 - 

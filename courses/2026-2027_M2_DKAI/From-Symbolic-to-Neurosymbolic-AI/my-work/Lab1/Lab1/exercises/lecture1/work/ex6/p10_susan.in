@@ -1,0 +1,13 @@
+% FOLIO validation, story 152, example 442
+%   Susan flies to LGA airport.  The departure and arrival can not be at the same airport.
+%   John flies from LGA airport.
+%   Conclusion: Susan flies from LGA airport.
+formulas(assumptions).
+  flies_to(susan, lga).                              % Susan flies to LGA.
+  all x all a (flies_to(x, a) -> -flies_from(x, a)).  % departure and arrival differ.
+  flies_from(john, lga).                             % John flies from LGA.
+end_of_list.
+
+formulas(goals).
+  flies_from(susan, lga).
+end_of_list.

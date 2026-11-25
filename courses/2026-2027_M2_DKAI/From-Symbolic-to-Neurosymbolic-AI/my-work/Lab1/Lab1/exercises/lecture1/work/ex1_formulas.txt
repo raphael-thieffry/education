@@ -1,0 +1,58 @@
+% Exercise 1 -- English sentences as first-order formulas, in Prover9 syntax.
+%
+% Write ONE Prover9 formula after each "=" (the final period is optional), then run:
+%     python check_formulas.py
+%
+% Vocabulary (use nothing else; names are case-sensitive):
+%     predicates   student(x)  smart(x)  lazy(x)  passes(x)  knows(x, y)    "x knows y"
+%     function     advisor(x)                                                "the advisor of x"
+%     constants    alice  bob
+%
+% Reminder:   -  not    &  and    |  or    ->  implies    <->  if and only if
+%             =  equal  !=  different
+%             all x (...)     exists x (...)
+%
+% Example (already done):  "Alice is a student."
+s0 = student(alice)
+
+% s1.  Bob is not lazy.
+s1 = -lazy(bob)
+
+% s2.  All students are smart.
+s2 = all x (student(x) -> smart(x))
+
+% s3.  Some students are lazy.
+s3 = exists x (student(x) & lazy(x))
+
+% s4.  No lazy student passes.
+s4 = all x (lazy(x) & student(x) -> -passes(x))
+
+% s5.  Not every student passes.
+s5 = exists x (student(x) & -passes(x))
+
+% s6.  Alice is smart or lazy, but not both.
+s6 = (smart(alice) | lazy(alice)) & -(smart(alice) & lazy(alice))
+
+% s7.  Bob passes only if Alice passes.
+s7 = passes(bob) -> passes(alice)
+
+% s8.  Alice passes unless she is lazy.
+s8 = -lazy(alice) -> passes(alice)
+
+% s9.  Only students pass.
+s9 = all x (-student(x) -> -passes(x))
+
+% s10. Every student knows some smart student.
+s10 = all x exists y (student(x) -> knows(x, y) & student(y) & smart(y))
+
+% s11. There is someone whom every student knows.
+s11 = exists y all x (student(x) -> knows(x, y))
+
+% s12. The advisor of every student is smart.
+s12 = all x (student(x) -> smart(advisor(x)))
+
+% s13. Alice and Bob are two different students.
+s13 = student(alice) & student(bob) & alice != bob
+
+% s14. At most one student is lazy.
+s14 = all x (student(x) & lazy(x) -> all y ((student(y) & lazy(y)) -> y = x))

@@ -1,0 +1,11 @@
+file,code_goal,code_negation,label,gold,seconds
+p01_hawks.in,2,0,False,False,0.006
+p02_greeks.in,2,2,Uncertain,Uncertain,0.007
+p03_horses.in,2,0,False,False,0.005
+p04_events.in,2,0,False,False,0.008
+p05_squares.in,0,2,True,True,0.006
+p06_pets.in,2,2,Uncertain,Uncertain,0.017
+p07_ted.in,0,2,True,True,0.037
+p08_tom.in,0,2,True,True,0.017
+p09_tom.in,2,0,False,False,0.015
+p10_susan.in,2,0,False,False,0.011

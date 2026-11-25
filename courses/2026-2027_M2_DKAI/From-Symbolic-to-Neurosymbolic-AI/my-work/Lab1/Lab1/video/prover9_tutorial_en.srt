@@ -1,0 +1,104 @@
+1
+00:00:05,527 --> 00:00:09,731
+Prover9-Mace4 (GUI). The Formulas tab has two areas: Assumptions and Goals.
+
+2
+00:00:09,831 --> 00:00:22,773
+Step 1. Type the assumptions, one formula per line, each ending with a period.
+
+3
+00:00:22,873 --> 00:00:27,327
+Step 2. Type the goal: the formula to prove.
+
+4
+00:00:27,427 --> 00:00:41,833
+Step 3. Optional: click Well Formed? to check the syntax.
+
+5
+00:00:41,933 --> 00:00:58,753
+Step 4. Set the time limit to 10 seconds, then click Start under Prover9.
+
+6
+00:00:58,853 --> 00:01:06,038
+A proof is found: the window shows it. deny(2) adds the negated goal; $F is the contradiction.
+
+7
+00:01:06,138 --> 00:01:18,441
+Close the proof window. State: Proof.
+
+8
+00:01:18,541 --> 00:01:36,326
+Step 5. Show Current Input: the text the GUI sends to Prover9. It is exactly a .in file.
+
+9
+00:01:36,426 --> 00:02:08,231
+Step 6. Delete the premise man(socrates) and run again.
+
+10
+00:02:08,331 --> 00:02:14,525
+Prover9 exit: Exhausted (exit code 2, sos_empty). The goal does not follow from these premises. Not proved does not mean false.
+
+11
+00:02:14,625 --> 00:02:18,744
+Step 7. Mace4 searches a counter-model: a situation where the premises are true and the goal is false.
+
+12
+00:02:18,844 --> 00:02:27,032
+Counter-model with 2 objects: nobody is a man, nobody is mortal. The premise is true, the goal is false.
+
+13
+00:02:27,132 --> 00:02:59,215
+Step 8. File > Save Input saves the formulas as a .in file, for the command line.
+
+14
+00:02:59,315 --> 00:03:06,794
+Part 2: the command line. Same formulas, in a .in file, run with prover9 -f.
+
+15
+00:03:06,894 --> 00:03:15,347
+A Prover9 input file: the assumptions, then the goal. Every formula ends with a period.
+
+16
+00:03:15,447 --> 00:03:23,869
+Run Prover9 on the file (-f). The proof goes to socrates.out; a summary is printed on the screen.
+
+17
+00:03:23,969 --> 00:03:29,380
+The exit code: 0 means THEOREM PROVED.
+
+18
+00:03:29,480 --> 00:03:39,858
+In the output: the negated goal [deny] and the contradiction $F.
+
+19
+00:03:39,958 --> 00:03:46,285
+A file that still contains ??? : Prover9 cannot read it.
+
+20
+00:03:46,385 --> 00:03:51,803
+Exit code 1: an error in the input file.
+
+21
+00:03:51,903 --> 00:03:59,459
+Prover9 says where: the part it could not read is marked.
+
+22
+00:03:59,559 --> 00:04:06,631
+The course helper p9.py: is Prover9 installed, which version?
+
+23
+00:04:06,731 --> 00:04:16,795
+p9.py run: the exit code, its meaning and the proof.
+
+24
+00:04:16,895 --> 00:04:26,210
+p9.py label: two runs (the goal, then its negation) give True, False or Uncertain.
+
+25
+00:04:26,310 --> 00:04:37,814
+A search that does not finish in 2 seconds: exit code 4, we do not know.
+
+26
+00:04:37,914 --> 00:04:42,914
+End of the command-line part.
+
