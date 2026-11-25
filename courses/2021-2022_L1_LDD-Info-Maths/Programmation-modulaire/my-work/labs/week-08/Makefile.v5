@@ -1,0 +1,16 @@
+CXX = g++
+CXXFLAGS = -std=c++11 -Wall
+EXEC_FILES = pharmacie-main
+all : $(EXEC_FILES)
+
+pharmacie-main : medicament.o prescription.o pharmacie-main.o
+	$(CXX) -o $@ $^
+
+%.o : %.cpp
+	$(CXX) $(CXXFLAGS) -c $<
+
+medicament.o : medicament.hpp
+prescription.o : prescription.hpp
+pharmacie-main.o : medicament.hpp prescription.hpp
+clean :
+	rm *.o $(EXEC_FILES)

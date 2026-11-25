@@ -1,0 +1,7 @@
+*.o
+coord
+.vscode/*
+tests
+main
+images/*
+*.gif

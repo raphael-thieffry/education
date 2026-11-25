@@ -1,0 +1,25 @@
+code {
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+div.example_wrapper pre {
+  font-size: 1.2rem;
+}
+
+div.lemma_wrapper pre {
+  font-size: 1.2rem;
+}
+
+div.theorem_wrapper pre {
+  font-size: 1.2rem;
+}
+
+div.definition_wrapper pre {
+  font-size: 1.2rem;
+}
+
+.highlight span.k {
+  color: #005080;
+  font-weight: normal;
+  }

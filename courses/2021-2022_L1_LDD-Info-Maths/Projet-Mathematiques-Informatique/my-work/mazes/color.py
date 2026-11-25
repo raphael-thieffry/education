@@ -1,0 +1,11 @@
+class Color:
+	red = "\033[91m"
+	bold = "\033[1m"
+	end = "\033[0m"
+	gray = "\033[90m"
+	underline = "\033[3m"
+	blink = "\033[5m"
+	blue = "\033[94m"
+	light_green = "\033[92m"
+	green = "\033[92m"
+	orange = "\033[93m"

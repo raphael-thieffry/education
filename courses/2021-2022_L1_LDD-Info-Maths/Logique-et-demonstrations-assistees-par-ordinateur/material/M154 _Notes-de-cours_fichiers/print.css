@@ -1,0 +1,25 @@
+@media print {
+	@page {
+		size: A4 portrait;
+		margin-left: 1.5cm;
+		margin-right: 1.5cm;
+	}
+
+html { font-size: 10px; }
+	body {
+	width: 100%;
+	margin: 0;
+	padding: 0;
+	max-width: 21cm;
+	}
+	div#content {
+		width: 100%
+	}
+
+	div.small_tactic_state {
+		display: none
+	}
+  .example_label .theorem_label {
+		page-break-after: avoid;
+  }
+}
