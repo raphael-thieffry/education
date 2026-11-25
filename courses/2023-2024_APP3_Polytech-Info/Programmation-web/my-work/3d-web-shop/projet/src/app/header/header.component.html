@@ -1,0 +1,25 @@
+<div id="header">
+    <a routerLink="/home" routerLinkActive="active" ariaCurrentWhenActive="page"><p>Nyxen</p></a>
+    <div class="left-head">
+        <a routerLink="/story"><p>Our Story</p></a>
+        <a routerLink="/shop" routerLinkActive="active fluffy"><img id="product-img" src="../assets/icons/product.png" alt="cart" width="40px" height="40px" /></a>
+        <a routerLink="/cart" id="cart-icon">
+            <img id="cart-img" src="../assets/icons/cart.svg" alt="account" width="40px" height="40px"/>
+            <span id="cart-items-quantity-wrapper" *ngIf="!isCartEmpty()">
+                <span id="cart-items-quantity">{{ getCartItemCount() }}</span>
+            </span>
+        </a>
+        <a  id="login">
+            <img id="account-img" src="../assets/icons/login.png" alt="account" width="40px" height="40px" (click)="toggleLogin()" />
+            <div class="account-actions" *ngIf="show" (click)="$event.stopPropagation()">
+                <ng-container *ngIf="this.user.auth.isAuthenticated$ | async; else unAuthenticated">
+                    <button (click)="this.user.handleLogout()">Log out</button>
+                </ng-container>
+                <ng-template #unAuthenticated>
+                    <button (click)="this.user.handleSignUp()">Sign up</button>
+                    <button (click)="this.user.handleLogin()">Log in</button>
+                </ng-template>
+            </div>
+         </a>
+    </div>
+</div>
